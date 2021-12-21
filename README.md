@@ -26,7 +26,7 @@ public void DoSomeShadyStuff(string aNumberMaybe, string definitelyANumber, stri
 }
 ```
 
-I can hear you say "It's all well and good but what I want to parse Dates?!"
+I can hear you say "It's all well and good but what if I want to parse Dates?!"
 
 ```c#
 public void DoMoreShadyStuff(string disguisedDate)
