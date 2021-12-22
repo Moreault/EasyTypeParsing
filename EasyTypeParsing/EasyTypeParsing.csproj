@@ -15,12 +15,17 @@
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/Moreault/EasyTypeParsing</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Moreault/EasyTypeParsing</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\easytypeparsing.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
