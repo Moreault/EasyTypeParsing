@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<RootNamespace>ToolBX.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-		<Version>1.0.1-beta1</Version>
+		<Version>2.0.0-beta1</Version>
 		<PackageIcon>easytypeparsing.png</PackageIcon>
 		<Description>Extension methods to make it easier to parse strings into other types.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -30,7 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="ToolBX.OutWarden" Version="1.0.0" />
+	  <PackageReference Include="ToolBX.OutWarden" Version="2.0.0-beta1" />
 	</ItemGroup>
 
 </Project>
