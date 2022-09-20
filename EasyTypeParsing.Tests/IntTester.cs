@@ -306,4 +306,224 @@ public class IntTester
             action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
         }
     }
+
+    [TestClass]
+    public class ToNullableInt : Tester
+    {
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(null)]
+        public void WhenValueIsEmpty_ReturnFailure(string value)
+        {
+            //Arrange
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+        }
+
+        [TestMethod]
+        public void WhenStringIsNegativeInt_ReturnAsInt()
+        {
+            //Arrange
+            var parsed = -Fixture.Create<int>();
+            var value = parsed.ToString();
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().Be(new TryGetResult<int?>(parsed));
+        }
+
+        [TestMethod]
+        public void WhenStringIsPositiveInt_ReturnAsInt()
+        {
+            //Arrange
+            var parsed = Fixture.Create<int>();
+            var value = parsed.ToString();
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().Be(new TryGetResult<int?>(parsed));
+        }
+
+        [TestMethod]
+        public void WhenStringIsBiggerThanIntUpperLimit_ReturnFailure()
+        {
+            //Arrange
+            var value = ((long)int.MaxValue + 1).ToString();
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+        }
+
+        [TestMethod]
+        public void WhenStringIsLesserThanIntLowerLimit_ReturnFailure()
+        {
+            //Arrange
+            var value = ((long)int.MinValue - 1).ToString();
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+        }
+
+        [TestMethod]
+        public void WhenStringIsNotNumeric_ReturnFailure()
+        {
+            //Arrange
+            var value = Fixture.Create<string>();
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+        }
+
+        [TestMethod]
+        public void WhenStringHasFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+
+            //Act
+            var result = value.ToNullableInt();
+
+            //Assert
+            result.Should().BeEquivalentTo(new TryGetResult<int?>(false, null));
+        }
+    }
+
+    [TestClass]
+    public class ToNullableIntOrDefault : Tester
+    {
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(null)]
+        public void WhenValueIsEmptyAndNoDefaultValueIsSpecified_ReturnDefaultValue(string value)
+        {
+            //Arrange
+
+            //Act
+            var result = value.ToNullableIntOrDefault();
+
+            //Assert
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(null)]
+        public void WhenValueIsEmpty_ReturnDefaultValue(string value)
+        {
+            //Arrange
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+
+        [TestMethod]
+        public void WhenStringIsNegativeInt_ReturnAsInt()
+        {
+            //Arrange
+            var parsed = -Fixture.Create<int>();
+            var value = parsed.ToString();
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(parsed);
+        }
+
+        [TestMethod]
+        public void WhenStringIsPositiveInt_ReturnAsInt()
+        {
+            //Arrange
+            var parsed = Fixture.Create<int>();
+            var value = parsed.ToString();
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(parsed);
+        }
+
+        [TestMethod]
+        public void WhenStringIsBiggerThanIntUpperLimit_ReturnDefaultValue()
+        {
+            //Arrange
+            var value = ((long)int.MaxValue + 1).ToString();
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+
+        [TestMethod]
+        public void WhenStringIsLesserThanIntLowerLimit_ReturnDefaultValue()
+        {
+            //Arrange
+            var value = ((long)int.MinValue - 1).ToString();
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+
+        [TestMethod]
+        public void WhenStringIsNotNumeric_ReturnDefaultValue()
+        {
+            //Arrange
+            var value = Fixture.Create<string>();
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+
+        [TestMethod]
+        public void WhenStringHasFloatingPoint_ReturnDefaultValue()
+        {
+            //Arrange
+            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+            var defaultValue = Fixture.Create<int>();
+
+            //Act
+            var result = value.ToNullableIntOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+    }
 }

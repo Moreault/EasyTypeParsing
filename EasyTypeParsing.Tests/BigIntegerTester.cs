@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace EasyTypeParsing.Tests;
+﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
 public class BigIntegerTester

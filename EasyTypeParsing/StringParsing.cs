@@ -168,6 +168,18 @@ public static class StringParsing
         }
     }
 
+    public static TryGetResult<int?> ToNullableInt(this string value, ParsingOptions? options = null)
+    {
+        var result = value.ToInt(options);
+        return result.IsSuccess ? new TryGetResult<int?>(true, result.Value) : new TryGetResult<int?>(false);
+    }
+
+    public static int? ToNullableIntOrDefault(this string value, int? defaultValue = default, ParsingOptions? options = null)
+    {
+        var result = value.ToInt(options);
+        return result.IsSuccess ? result.Value : defaultValue;
+    }
+
     public static TryGetResult<T> ToEnum<T>(this string value) where T : struct, Enum
     {
         var isSuccess = Enum.TryParse(value, true, out T parsedValue);
@@ -180,17 +192,16 @@ public static class StringParsing
         return result.IsSuccess ? result.Value : defaultValue;
     }
 
-    public static T ToEnumOrThrow<T>(this string value) where T : struct, Enum
+    public static TryGetResult<T?> ToNullableEnum<T>(this string value) where T : struct, Enum
     {
-        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
-        try
-        {
-            return (T)Enum.Parse(typeof(T), value, true);
-        }
-        catch (Exception e)
-        {
-            throw new StringParsingException<T>(value, e);
-        }
+        var result = value.ToEnum<T>();
+        return result.IsSuccess ? new TryGetResult<T?>(result.Value) : new TryGetResult<T?>(false);
+    }
+
+    public static T? ToNullableEnumOrDefault<T>(this string value, T? defaultValue = default) where T : struct, Enum
+    {
+        var result = value.ToEnum<T>();
+        return result.IsSuccess ? result.Value : defaultValue;
     }
 
     public static TryGetResult<byte> ToByte(this string value, ParsingOptions? options = null)
