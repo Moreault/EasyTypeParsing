@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class ShortTester
+public class ShortTest
 {
     [TestClass]
     public class ToShort : Tester
@@ -18,7 +18,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+            result.Should().BeEquivalentTo(Result<short>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().Be(new TryGetResult<short>(parsed));
+            result.Should().Be(Result<short>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().Be(new TryGetResult<short>(parsed));
+            result.Should().Be(Result<short>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+            result.Should().BeEquivalentTo(Result<short>.Failure());
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+            result.Should().BeEquivalentTo(Result<short>.Failure());
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+            result.Should().BeEquivalentTo(Result<short>.Failure());
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ public class ShortTester
             var result = value.ToShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+            result.Should().BeEquivalentTo(Result<short>.Failure());
         }
     }
 

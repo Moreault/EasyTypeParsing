@@ -88,7 +88,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(defaultValue);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToLongAndValueIsNegativeLong_ReturnAsLong()
     {
@@ -435,7 +435,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(parsed);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToByteAndValueIsPositiveByte_ReturnAsByte()
     {
@@ -506,7 +506,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(defaultValue);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToSByteAndValueIsNegativeSByte_ReturnAsSByte()
     {
@@ -1010,7 +1010,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(defaultValue);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToDateTimeAndValueIsValidDateTime_ReturnAsDateTime()
     {
@@ -1084,7 +1084,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(parsed);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToDateTimeOffsetAndValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
     {
@@ -1172,7 +1172,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(defaultValue);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToTimeSpanAndValueIsValidTimeSpan_ReturnAsTimeSpan()
     {
@@ -1201,7 +1201,7 @@ public class ParseOrDefault : Tester
         //Assert
         result.Should().Be(defaultValue);
     }
-    
+
     [TestMethod]
     public void WhenConvertingToGuidAndValueIsValidGuid_ReturnAsGuid()
     {

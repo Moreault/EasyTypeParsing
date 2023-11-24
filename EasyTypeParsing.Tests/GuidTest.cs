@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class GuidTester
+public class GuidTest
 {
     [TestClass]
     public class ToGuid : Tester

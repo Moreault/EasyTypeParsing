@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class TimeSpanTester
+public class TimeSpanTest
 {
     [TestClass]
     public class ToTimeSpan : Tester

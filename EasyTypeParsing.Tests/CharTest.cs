@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class CharTester
+public class CharTest
 {
     [TestClass]
     public class ToChar : Tester
@@ -17,7 +17,7 @@ public class CharTester
             var result = value.ToChar();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<char>.Failure);
+            result.Should().BeEquivalentTo(Result<char>.Failure());
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ public class CharTester
             var result = value.ToChar();
 
             //Assert
-            result.Should().Be(new TryGetResult<char>(true, ' '));
+            result.Should().Be(Result<char>.Success(' '));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ public class CharTester
             var result = value.ToChar();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<char>.Failure);
+            result.Should().BeEquivalentTo(Result<char>.Failure());
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ public class CharTester
             var result = value.ToChar();
 
             //Assert
-            result.Should().Be(new TryGetResult<char>(true, parsed));
+            result.Should().Be(Result<char>.Success(parsed));
         }
     }
 

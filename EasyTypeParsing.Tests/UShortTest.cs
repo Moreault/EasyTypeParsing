@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class UShortTester
+public class UShortTest
 {
     [TestClass]
     public class ToUShort : Tester
@@ -18,7 +18,7 @@ public class UShortTester
             var result = value.ToUShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+            result.Should().BeEquivalentTo(Result<ushort>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class UShortTester
             var result = value.ToUShort();
 
             //Assert
-            result.Should().Be(new TryGetResult<ushort>(parsed));
+            result.Should().Be(Result<ushort>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class UShortTester
             var result = value.ToUShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+            result.Should().BeEquivalentTo(Result<ushort>.Failure());
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ public class UShortTester
             var result = value.ToUShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+            result.Should().BeEquivalentTo(Result<ushort>.Failure());
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ public class UShortTester
             var result = value.ToUShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+            result.Should().BeEquivalentTo(Result<ushort>.Failure());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ public class UShortTester
             var result = value.ToUShort();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+            result.Should().BeEquivalentTo(Result<ushort>.Failure());
         }
     }
 

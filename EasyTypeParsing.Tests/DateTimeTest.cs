@@ -3,7 +3,7 @@
 namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class DateTimeTester
+public class DateTimeTest
 {
     [TestClass]
     public class ToDateTime : Tester

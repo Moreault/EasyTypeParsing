@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class BoolTester
+public class BoolTest
 {
     [TestClass]
     public class ToBool : Tester

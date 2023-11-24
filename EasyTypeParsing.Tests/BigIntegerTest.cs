@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class BigIntegerTester
+public class BigIntegerTest
 {
     [TestClass]
     public class ToBigInteger : Tester

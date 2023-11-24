@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class SByteTester
+public class SByteTest
 {
     [TestClass]
     public class ToSByte : Tester
@@ -18,7 +18,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+            result.Should().BeEquivalentTo(Result<sbyte>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().Be(new TryGetResult<sbyte>(parsed));
+            result.Should().Be(Result<sbyte>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().Be(new TryGetResult<sbyte>(parsed));
+            result.Should().Be(Result<sbyte>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+            result.Should().BeEquivalentTo(Result<sbyte>.Failure());
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+            result.Should().BeEquivalentTo(Result<sbyte>.Failure());
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+            result.Should().BeEquivalentTo(Result<sbyte>.Failure());
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ public class SByteTester
             var result = value.ToSByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+            result.Should().BeEquivalentTo(Result<sbyte>.Failure());
         }
     }
 

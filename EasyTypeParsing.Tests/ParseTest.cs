@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class Parse : Tester
+public class ParseTest : Tester
 {
     [TestMethod]
     public void WhenConvertingToIntAndValueIsNegativeInt_ReturnAsInt()
@@ -14,7 +14,7 @@ public class Parse : Tester
         var result = value.Parse<int>();
 
         //Assert
-        result.Should().Be(new TryGetResult<int>(parsed));
+        result.Should().Be(Result<int>.Success(parsed));
     }
 
     [TestMethod]
@@ -28,7 +28,7 @@ public class Parse : Tester
         var result = value.Parse<int>();
 
         //Assert
-        result.Should().Be(new TryGetResult<int>(parsed));
+        result.Should().Be(Result<int>.Success(parsed));
     }
 
     [TestMethod]
@@ -41,7 +41,7 @@ public class Parse : Tester
         var result = value.Parse<int>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+        result.Should().BeEquivalentTo(Result<int>.Failure());
     }
 
     [TestMethod]
@@ -54,7 +54,7 @@ public class Parse : Tester
         var result = value.Parse<int>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+        result.Should().BeEquivalentTo(Result<int>.Failure());
     }
 
     [TestMethod]
@@ -67,7 +67,7 @@ public class Parse : Tester
         var result = value.Parse<int>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+        result.Should().BeEquivalentTo(Result<int>.Failure());
     }
 
     [TestMethod]
@@ -80,7 +80,7 @@ public class Parse : Tester
         var result = value.Parse<int>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+        result.Should().BeEquivalentTo(Result<int>.Failure());
     }
 
     [TestMethod]
@@ -94,7 +94,7 @@ public class Parse : Tester
         var result = value.Parse<long>();
 
         //Assert
-        result.Should().Be(new TryGetResult<long>(parsed));
+        result.Should().Be(Result<long>.Success(parsed));
     }
 
     [TestMethod]
@@ -108,7 +108,7 @@ public class Parse : Tester
         var result = value.Parse<long>();
 
         //Assert
-        result.Should().Be(new TryGetResult<long>(parsed));
+        result.Should().Be(Result<long>.Success(parsed));
     }
 
     [TestMethod]
@@ -121,7 +121,7 @@ public class Parse : Tester
         var result = value.Parse<long>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+        result.Should().BeEquivalentTo(Result<long>.Failure());
     }
 
     [TestMethod]
@@ -134,7 +134,7 @@ public class Parse : Tester
         var result = value.Parse<long>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+        result.Should().BeEquivalentTo(Result<long>.Failure());
     }
 
     [TestMethod]
@@ -147,7 +147,7 @@ public class Parse : Tester
         var result = value.Parse<long>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+        result.Should().BeEquivalentTo(Result<long>.Failure());
     }
 
     [TestMethod]
@@ -160,7 +160,7 @@ public class Parse : Tester
         var result = value.Parse<long>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+        result.Should().BeEquivalentTo(Result<long>.Failure());
     }
 
     [TestMethod]
@@ -174,7 +174,7 @@ public class Parse : Tester
         var result = value.Parse<float>();
 
         //Assert
-        result.Should().Be(new TryGetResult<float>(parsed));
+        result.Should().Be(Result<float>.Success(parsed));
     }
 
     [TestMethod]
@@ -188,24 +188,11 @@ public class Parse : Tester
         var result = value.Parse<float>();
 
         //Assert
-        result.Should().Be(new TryGetResult<float>(parsed));
+        result.Should().Be(Result<float>.Success(parsed));
     }
 
     [TestMethod]
-    public void WhenConvertingToFloatAndValueIsBiggerThanFloatUpperLimit_ReturnPositiveInfinity()
-    {
-        //Arrange
-        var value = "92233736799999999999999999999999999999999999999999999999999999999976457645674575474576547645764576657620312342141341341243124312436854775809.982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-
-        //Act
-        var result = value.Parse<float>();
-
-        //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<float>(float.PositiveInfinity));
-    }
-
-    [TestMethod]
-    public void WhenConvertingToFloatAndValueIsLesserThanFloatLowerLimit_ReturnFailure()
+    public void WhenConvertingToFloatAndValueIsLesserThanFloatLowerLimit_ReturnSuccessWithNegativeInfinity()
     {
         //Arrange
         var value = "-92233736799999999999999999999999999999999999999999999999999999999976457645674575474576547645764576657620312342141341341243124312436854775809.982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
@@ -214,7 +201,7 @@ public class Parse : Tester
         var result = value.Parse<float>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<float>(float.NegativeInfinity));
+        result.Should().BeEquivalentTo(Result<float>.Success(float.NegativeInfinity));
     }
 
     [TestMethod]
@@ -227,7 +214,7 @@ public class Parse : Tester
         var result = value.Parse<float>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<float>(false));
+        result.Should().BeEquivalentTo(Result<float>.Failure());
     }
 
     [TestMethod]
@@ -241,7 +228,7 @@ public class Parse : Tester
         var result = value.Parse<float>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<float>(parsed));
+        result.Should().BeEquivalentTo(Result<float>.Success(parsed));
     }
 
     [TestMethod]
@@ -255,7 +242,7 @@ public class Parse : Tester
         var result = value.Parse<double>();
 
         //Assert
-        result.Should().Be(new TryGetResult<double>(parsed));
+        result.Should().Be(Result<double>.Success(parsed));
     }
 
     [TestMethod]
@@ -269,24 +256,11 @@ public class Parse : Tester
         var result = value.Parse<double>();
 
         //Assert
-        result.Should().Be(new TryGetResult<double>(parsed));
+        result.Should().Be(Result<double>.Success(parsed));
     }
 
     [TestMethod]
-    public void WhenConvertingToDoubleAndValueIsBiggerThanDoubleUpperLimit_ReturnPositiveInfinity()
-    {
-        //Arrange
-        var value = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-
-        //Act
-        var result = value.Parse<double>();
-
-        //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<double>(double.PositiveInfinity));
-    }
-
-    [TestMethod]
-    public void WhenConvertingToDoubleAndValueIsLesserThanDoubleLowerLimit_ReturnFailure()
+    public void WhenConvertingToDoubleAndValueIsLesserThanDoubleLowerLimit_ReturnSuccessWithNegativeInfinity()
     {
         //Arrange
         var value = "-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
@@ -295,7 +269,7 @@ public class Parse : Tester
         var result = value.Parse<double>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<double>(double.NegativeInfinity));
+        result.Should().BeEquivalentTo(Result<double>.Success(double.NegativeInfinity));
     }
 
     [TestMethod]
@@ -308,7 +282,7 @@ public class Parse : Tester
         var result = value.Parse<double>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<double>(false));
+        result.Should().BeEquivalentTo(Result<double>.Failure());
     }
 
     [TestMethod]
@@ -322,7 +296,7 @@ public class Parse : Tester
         var result = value.Parse<double>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<double>(parsed));
+        result.Should().BeEquivalentTo(Result<double>.Success(parsed));
     }
 
     [TestMethod]
@@ -336,7 +310,7 @@ public class Parse : Tester
         var result = value.Parse<decimal>();
 
         //Assert
-        result.Should().Be(new TryGetResult<decimal>(parsed));
+        result.Should().Be(Result<decimal>.Success(parsed));
     }
 
     [TestMethod]
@@ -350,20 +324,7 @@ public class Parse : Tester
         var result = value.Parse<decimal>();
 
         //Assert
-        result.Should().Be(new TryGetResult<decimal>(parsed));
-    }
-
-    [TestMethod]
-    public void WhenConvertingToDecimalAndValueIsBiggerThanDecimalUpperLimit_ReturnPositiveInfinity()
-    {
-        //Arrange
-        var value = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-
-        //Act
-        var result = value.Parse<decimal>();
-
-        //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+        result.Should().Be(Result<decimal>.Success(parsed));
     }
 
     [TestMethod]
@@ -376,7 +337,7 @@ public class Parse : Tester
         var result = value.Parse<decimal>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+        result.Should().BeEquivalentTo(Result<decimal>.Failure());
     }
 
     [TestMethod]
@@ -389,7 +350,7 @@ public class Parse : Tester
         var result = value.Parse<decimal>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+        result.Should().BeEquivalentTo(Result<decimal>.Failure());
     }
 
     [TestMethod]
@@ -403,7 +364,7 @@ public class Parse : Tester
         var result = value.Parse<decimal>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<decimal>(parsed));
+        result.Should().BeEquivalentTo(Result<decimal>.Success(parsed));
     }
 
     [TestMethod]
@@ -417,7 +378,7 @@ public class Parse : Tester
         var result = value.Parse<byte>();
 
         //Assert
-        result.Should().Be(new TryGetResult<byte>(parsed));
+        result.Should().Be(Result<byte>.Success(parsed));
     }
 
     [TestMethod]
@@ -430,7 +391,7 @@ public class Parse : Tester
         var result = value.Parse<byte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+        result.Should().BeEquivalentTo(Result<byte>.Failure());
     }
 
     [TestMethod]
@@ -443,7 +404,7 @@ public class Parse : Tester
         var result = value.Parse<byte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+        result.Should().BeEquivalentTo(Result<byte>.Failure());
     }
 
     [TestMethod]
@@ -456,7 +417,7 @@ public class Parse : Tester
         var result = value.Parse<byte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+        result.Should().BeEquivalentTo(Result<byte>.Failure());
     }
 
     [TestMethod]
@@ -469,7 +430,7 @@ public class Parse : Tester
         var result = value.Parse<byte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+        result.Should().BeEquivalentTo(Result<byte>.Failure());
     }
 
     [TestMethod]
@@ -483,7 +444,7 @@ public class Parse : Tester
         var result = value.Parse<sbyte>();
 
         //Assert
-        result.Should().Be(new TryGetResult<sbyte>(parsed));
+        result.Should().Be(Result<sbyte>.Success(parsed));
     }
 
     [TestMethod]
@@ -497,7 +458,7 @@ public class Parse : Tester
         var result = value.Parse<sbyte>();
 
         //Assert
-        result.Should().Be(new TryGetResult<sbyte>(parsed));
+        result.Should().Be(Result<sbyte>.Success(parsed));
     }
 
     [TestMethod]
@@ -510,7 +471,7 @@ public class Parse : Tester
         var result = value.Parse<sbyte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+        result.Should().BeEquivalentTo(Result<sbyte>.Failure());
     }
 
     [TestMethod]
@@ -523,7 +484,7 @@ public class Parse : Tester
         var result = value.Parse<sbyte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+        result.Should().BeEquivalentTo(Result<sbyte>.Failure());
     }
 
     [TestMethod]
@@ -536,7 +497,7 @@ public class Parse : Tester
         var result = value.Parse<sbyte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+        result.Should().BeEquivalentTo(Result<sbyte>.Failure());
     }
 
     [TestMethod]
@@ -549,7 +510,7 @@ public class Parse : Tester
         var result = value.Parse<sbyte>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<sbyte>(false));
+        result.Should().BeEquivalentTo(Result<sbyte>.Failure());
     }
 
     [TestMethod]
@@ -563,7 +524,7 @@ public class Parse : Tester
         var result = value.Parse<short>();
 
         //Assert
-        result.Should().Be(new TryGetResult<short>(parsed));
+        result.Should().Be(Result<short>.Success(parsed));
     }
 
     [TestMethod]
@@ -577,7 +538,7 @@ public class Parse : Tester
         var result = value.Parse<short>();
 
         //Assert
-        result.Should().Be(new TryGetResult<short>(parsed));
+        result.Should().Be(Result<short>.Success(parsed));
     }
 
     [TestMethod]
@@ -590,7 +551,7 @@ public class Parse : Tester
         var result = value.Parse<short>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+        result.Should().BeEquivalentTo(Result<short>.Failure());
     }
 
     [TestMethod]
@@ -603,7 +564,7 @@ public class Parse : Tester
         var result = value.Parse<short>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+        result.Should().BeEquivalentTo(Result<short>.Failure());
     }
 
     [TestMethod]
@@ -616,7 +577,7 @@ public class Parse : Tester
         var result = value.Parse<short>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+        result.Should().BeEquivalentTo(Result<short>.Failure());
     }
 
     [TestMethod]
@@ -629,7 +590,7 @@ public class Parse : Tester
         var result = value.Parse<short>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<short>(false));
+        result.Should().BeEquivalentTo(Result<short>.Failure());
     }
 
     [TestMethod]
@@ -642,7 +603,7 @@ public class Parse : Tester
         var result = value.Parse<char>();
 
         //Assert
-        result.Should().Be(new TryGetResult<char>(true, ' '));
+        result.Should().Be(Result<char>.Success(' '));
     }
 
     [TestMethod]
@@ -655,7 +616,7 @@ public class Parse : Tester
         var result = value.Parse<char>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<char>.Failure);
+        result.Should().BeEquivalentTo(Result<char>.Failure());
     }
 
     [TestMethod]
@@ -669,7 +630,7 @@ public class Parse : Tester
         var result = value.Parse<char>();
 
         //Assert
-        result.Should().Be(new TryGetResult<char>(true, parsed));
+        result.Should().Be(Result<char>.Success(parsed));
     }
 
     [TestMethod]
@@ -683,7 +644,7 @@ public class Parse : Tester
         var result = value.Parse<uint>();
 
         //Assert
-        result.Should().Be(new TryGetResult<uint>(parsed));
+        result.Should().Be(Result<uint>.Success(parsed));
     }
 
     [TestMethod]
@@ -696,7 +657,7 @@ public class Parse : Tester
         var result = value.Parse<uint>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+        result.Should().BeEquivalentTo(Result<uint>.Failure());
     }
 
     [TestMethod]
@@ -709,7 +670,7 @@ public class Parse : Tester
         var result = value.Parse<uint>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+        result.Should().BeEquivalentTo(Result<uint>.Failure());
     }
 
     [TestMethod]
@@ -722,7 +683,7 @@ public class Parse : Tester
         var result = value.Parse<uint>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+        result.Should().BeEquivalentTo(Result<uint>.Failure());
     }
 
     [TestMethod]
@@ -735,7 +696,7 @@ public class Parse : Tester
         var result = value.Parse<uint>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+        result.Should().BeEquivalentTo(Result<uint>.Failure());
     }
 
     [TestMethod]
@@ -749,7 +710,7 @@ public class Parse : Tester
         var result = value.Parse<ulong>();
 
         //Assert
-        result.Should().Be(new TryGetResult<ulong>(parsed));
+        result.Should().Be(Result<ulong>.Success(parsed));
     }
 
     [TestMethod]
@@ -762,7 +723,7 @@ public class Parse : Tester
         var result = value.Parse<ulong>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+        result.Should().BeEquivalentTo(Result<ulong>.Failure());
     }
 
     [TestMethod]
@@ -775,7 +736,7 @@ public class Parse : Tester
         var result = value.Parse<ulong>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+        result.Should().BeEquivalentTo(Result<ulong>.Failure());
     }
 
     [TestMethod]
@@ -788,7 +749,7 @@ public class Parse : Tester
         var result = value.Parse<ulong>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+        result.Should().BeEquivalentTo(Result<ulong>.Failure());
     }
 
     [TestMethod]
@@ -801,7 +762,7 @@ public class Parse : Tester
         var result = value.Parse<ulong>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+        result.Should().BeEquivalentTo(Result<ulong>.Failure());
     }
 
     [TestMethod]
@@ -815,7 +776,7 @@ public class Parse : Tester
         var result = value.Parse<ushort>();
 
         //Assert
-        result.Should().Be(new TryGetResult<ushort>(parsed));
+        result.Should().Be(Result<ushort>.Success(parsed));
     }
 
     [TestMethod]
@@ -828,7 +789,7 @@ public class Parse : Tester
         var result = value.Parse<ushort>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+        result.Should().BeEquivalentTo(Result<ushort>.Failure());
     }
 
     [TestMethod]
@@ -841,7 +802,7 @@ public class Parse : Tester
         var result = value.Parse<ushort>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+        result.Should().BeEquivalentTo(Result<ushort>.Failure());
     }
 
     [TestMethod]
@@ -854,7 +815,7 @@ public class Parse : Tester
         var result = value.Parse<ushort>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+        result.Should().BeEquivalentTo(Result<ushort>.Failure());
     }
 
     [TestMethod]
@@ -867,7 +828,7 @@ public class Parse : Tester
         var result = value.Parse<ushort>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<ushort>(false));
+        result.Should().BeEquivalentTo(Result<ushort>.Failure());
     }
 
     [TestMethod]
@@ -880,7 +841,7 @@ public class Parse : Tester
         var result = value.Parse<bool>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<bool>(true, true));
+        result.Should().BeEquivalentTo(Result<bool>.Success(true));
     }
 
     [TestMethod]
@@ -893,7 +854,7 @@ public class Parse : Tester
         var result = value.Parse<bool>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<bool>(true, true));
+        result.Should().BeEquivalentTo(Result<bool>.Success(true));
     }
 
     [TestMethod]
@@ -906,7 +867,7 @@ public class Parse : Tester
         var result = value.Parse<bool>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<bool>(true, false));
+        result.Should().BeEquivalentTo(Result<bool>.Success(false));
     }
 
     [TestMethod]
@@ -919,7 +880,7 @@ public class Parse : Tester
         var result = value.Parse<bool>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<bool>(true, false));
+        result.Should().BeEquivalentTo(Result<bool>.Success(false));
     }
 
     [TestMethod]
@@ -932,7 +893,7 @@ public class Parse : Tester
         var result = value.Parse<bool>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<bool>(false));
+        result.Should().BeEquivalentTo(Result<bool>.Failure());
     }
     
     [TestMethod]
@@ -946,7 +907,7 @@ public class Parse : Tester
         var result = value.Parse<DateTime>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<DateTime>(true, parsed));
+        result.Should().BeEquivalentTo(Result<DateTime>.Success(parsed));
     }
 
     [TestMethod]
@@ -960,7 +921,7 @@ public class Parse : Tester
         var result = value.Parse<DateTime>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<DateTime>(true, parsed));
+        result.Should().BeEquivalentTo(Result<DateTime>.Success(parsed));
     }
 
     [TestMethod]
@@ -973,7 +934,7 @@ public class Parse : Tester
         var result = value.Parse<DateTime>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<DateTime>.Failure);
+        result.Should().BeEquivalentTo(Result<DateTime>.Failure());
     }
 
     [TestMethod]
@@ -987,7 +948,7 @@ public class Parse : Tester
         var result = value.Parse<DateTime>(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<DateTime>.Failure);
+        result.Should().BeEquivalentTo(Result<DateTime>.Failure());
     }
 
     [TestMethod]
@@ -1001,7 +962,7 @@ public class Parse : Tester
         var result = value.Parse<DateTime>(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<DateTime>(true, parsed));
+        result.Should().BeEquivalentTo(Result<DateTime>.Success(parsed));
     }
 
     [TestMethod]
@@ -1015,7 +976,7 @@ public class Parse : Tester
         var result = value.Parse<DateTimeOffset>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<DateTimeOffset>(true, parsed));
+        result.Should().BeEquivalentTo(Result<DateTimeOffset>.Success(parsed));
     }
 
     [TestMethod]
@@ -1028,7 +989,7 @@ public class Parse : Tester
         var result = value.Parse<DateTimeOffset>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<DateTimeOffset>.Failure);
+        result.Should().BeEquivalentTo(Result<DateTimeOffset>.Failure());
     }
 
     [TestMethod]
@@ -1042,7 +1003,7 @@ public class Parse : Tester
         var result = value.Parse<DateTimeOffset>(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<DateTimeOffset>.Failure);
+        result.Should().BeEquivalentTo(Result<DateTimeOffset>.Failure());
     }
 
     [TestMethod]
@@ -1056,7 +1017,7 @@ public class Parse : Tester
         var result = value.Parse<DateTimeOffset>(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<DateTimeOffset>(true, parsed));
+        result.Should().BeEquivalentTo(Result<DateTimeOffset>.Success(parsed));
     }
 
     [TestMethod]
@@ -1070,7 +1031,7 @@ public class Parse : Tester
         var result = value.Parse<Version>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<Version>(true, parsed));
+        result.Should().BeEquivalentTo(Result<Version>.Success(parsed));
     }
 
     [TestMethod]
@@ -1083,7 +1044,7 @@ public class Parse : Tester
         var result = value.Parse<Version>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<Version>.Failure);
+        result.Should().BeEquivalentTo(Result<Version>.Failure());
     }
     
     [TestMethod]
@@ -1097,7 +1058,7 @@ public class Parse : Tester
         var result = value.Parse<TimeSpan>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<TimeSpan>(true, parsed));
+        result.Should().BeEquivalentTo(Result<TimeSpan>.Success(parsed));
     }
 
     [TestMethod]
@@ -1110,7 +1071,7 @@ public class Parse : Tester
         var result = value.Parse<TimeSpan>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<TimeSpan>.Failure);
+        result.Should().BeEquivalentTo(Result<TimeSpan>.Failure());
     }
     
     [TestMethod]
@@ -1124,7 +1085,7 @@ public class Parse : Tester
         var result = value.Parse<Guid>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<Guid>(true, parsed));
+        result.Should().BeEquivalentTo(Result<Guid>.Success(parsed));
     }
 
     [TestMethod]
@@ -1137,7 +1098,7 @@ public class Parse : Tester
         var result = value.Parse<Guid>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<Guid>(false));
+        result.Should().BeEquivalentTo(Result<Guid>.Failure());
     }
     
     [TestMethod]
@@ -1151,7 +1112,7 @@ public class Parse : Tester
         var result = value.Parse<BigInteger>();
 
         //Assert
-        result.Should().BeEquivalentTo(new TryGetResult<BigInteger>(true, parsed));
+        result.Should().BeEquivalentTo(Result<BigInteger>.Success(parsed));
     }
 
     [TestMethod]
@@ -1164,7 +1125,7 @@ public class Parse : Tester
         var result = value.Parse<BigInteger>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<BigInteger>.Failure);
+        result.Should().BeEquivalentTo(Result<BigInteger>.Failure());
     }
 
     [TestMethod]
@@ -1177,6 +1138,6 @@ public class Parse : Tester
         var result = value.Parse<DummyUnsupportedType>();
 
         //Assert
-        result.Should().BeEquivalentTo(TryGetResult<DummyUnsupportedType>.Failure);
+        result.Should().BeEquivalentTo(Result<DummyUnsupportedType>.Failure());
     }
 }

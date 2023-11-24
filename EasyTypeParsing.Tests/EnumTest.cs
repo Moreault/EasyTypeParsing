@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class EnumTester
+public class EnumTest
 {
     [TestClass]
     public class ToEnum : Tester

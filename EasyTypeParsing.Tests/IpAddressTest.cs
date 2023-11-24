@@ -1,9 +1,7 @@
-﻿using System.Net;
-
-namespace EasyTypeParsing.Tests;
+﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class IpAddressTester
+public class IpAddressTest
 {
     [TestClass]
     public class ToIpAddress : Tester

@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class VersionTester
+public class VersionTest
 {
     [TestClass]
     public class ToVersion : Tester

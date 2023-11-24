@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class ULongTester
+public class ULongTest
 {
     [TestClass]
     public class ToULong : Tester
@@ -18,7 +18,7 @@ public class ULongTester
             var result = value.ToULong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+            result.Should().BeEquivalentTo(Result<ulong>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class ULongTester
             var result = value.ToULong();
 
             //Assert
-            result.Should().Be(new TryGetResult<ulong>(parsed));
+            result.Should().Be(Result<ulong>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class ULongTester
             var result = value.ToULong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+            result.Should().BeEquivalentTo(Result<ulong>.Failure());
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ public class ULongTester
             var result = value.ToULong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+            result.Should().BeEquivalentTo(Result<ulong>.Failure());
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ public class ULongTester
             var result = value.ToULong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+            result.Should().BeEquivalentTo(Result<ulong>.Failure());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ public class ULongTester
             var result = value.ToULong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<ulong>(false));
+            result.Should().BeEquivalentTo(Result<ulong>.Failure());
         }
     }
 
