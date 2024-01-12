@@ -1,12 +1,10 @@
-﻿using System.Net;
-
-namespace EasyTypeParsing.Tests;
+﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class IpAddressTester
+public class VersionTest
 {
     [TestClass]
-    public class ToIpAddress : Tester
+    public class ToVersion : Tester
     {
         [TestMethod]
         [DataRow("")]
@@ -17,42 +15,42 @@ public class IpAddressTester
             //Arrange
 
             //Act
-            var result = value.ToIpAddress();
+            var result = value.ToVersion();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<IPAddress>.Failure);
+            result.Should().BeEquivalentTo(Result<Version>.Failure());
         }
 
         [TestMethod]
-        public void WhenIsCorrectlyFormattedIPAddress_ReturnAsIPAddress()
+        public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
         {
             //Arrange
-            var parsed = Fixture.Create<IPAddress>();
+            var parsed = Fixture.Create<Version>();
             var value = parsed.ToString();
 
             //Act
-            var result = value.ToIpAddress();
+            var result = value.ToVersion();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<IPAddress>(true, parsed));
+            result.Should().BeEquivalentTo(Result<Version>.Success(parsed));
         }
 
         [TestMethod]
-        public void WhenValueIsNotIPAddress_ReturnFailure()
+        public void WhenValueIsNotVersion_ReturnFailure()
         {
             //Arrange
             var value = Fixture.Create<string>();
 
             //Act
-            var result = value.ToIpAddress();
+            var result = value.ToVersion();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<IPAddress>.Failure);
+            result.Should().BeEquivalentTo(Result<Version>.Failure());
         }
     }
 
     [TestClass]
-    public class ToIpAddressOrDefault : Tester
+    public class ToVersionOrDefault : Tester
     {
         [TestMethod]
         [DataRow("")]
@@ -61,39 +59,39 @@ public class IpAddressTester
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<IPAddress>();
+            var defaultValue = Fixture.Create<Version>();
 
             //Act
-            var result = value.ToIpAddressOrDefault(defaultValue);
+            var result = value.ToVersionOrDefault(defaultValue);
 
             //Assert
             result.Should().Be(defaultValue);
         }
 
         [TestMethod]
-        public void WhenIsCorrectlyFormattedIPAddress_ReturnAsIPAddress()
+        public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
         {
             //Arrange
-            var parsed = Fixture.Create<IPAddress>();
+            var parsed = Fixture.Create<Version>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<IPAddress>();
+            var defaultValue = Fixture.Create<Version>();
 
             //Act
-            var result = value.ToIpAddressOrDefault(defaultValue);
+            var result = value.ToVersionOrDefault(defaultValue);
 
             //Assert
             result.Should().BeEquivalentTo(parsed);
         }
 
         [TestMethod]
-        public void WhenValueIsNotIPAddress_ReturnDefault()
+        public void WhenValueIsNotVersion_ReturnDefault()
         {
             //Arrange
             var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<IPAddress>();
+            var defaultValue = Fixture.Create<Version>();
 
             //Act
-            var result = value.ToIpAddressOrDefault(defaultValue);
+            var result = value.ToVersionOrDefault(defaultValue);
 
             //Assert
             result.Should().Be(defaultValue);
@@ -101,7 +99,7 @@ public class IpAddressTester
     }
 
     [TestClass]
-    public class ToIpAddressOrThrow : Tester
+    public class ToVersionOrThrow : Tester
     {
         [TestMethod]
         [DataRow("")]
@@ -112,37 +110,37 @@ public class IpAddressTester
             //Arrange
 
             //Act
-            Action action = () => value.ToIpAddressOrThrow();
+            Action action = () => value.ToVersionOrThrow();
 
             //Assert
             action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
-        public void WhenIsCorrectlyFormattedIPAddress_ReturnAsIPAddress()
+        public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
         {
             //Arrange
-            var parsed = Fixture.Create<IPAddress>();
+            var parsed = Fixture.Create<Version>();
             var value = parsed.ToString();
 
             //Act
-            var result = value.ToIpAddressOrThrow();
+            var result = value.ToVersionOrThrow();
 
             //Assert
             result.Should().BeEquivalentTo(parsed);
         }
 
         [TestMethod]
-        public void WhenValueIsNotIPAddress_ReturnFailure()
+        public void WhenValueIsNotVersion_ReturnFailure()
         {
             //Arrange
             var value = Fixture.Create<string>();
 
             //Act
-            Action action = () => value.ToIpAddressOrThrow();
+            Action action = () => value.ToVersionOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<IPAddress>>().WithMessage($"Can't parse string to {nameof(IPAddress)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<Version>>().WithMessage($"Can't parse string to {nameof(Version)} : Its value was {value}");
         }
     }
 }

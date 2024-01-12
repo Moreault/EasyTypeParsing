@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class DecimalTester
+public class DecimalTest
 {
     [TestClass]
     public class ToDecimal : Tester
@@ -18,7 +18,7 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+            result.Should().BeEquivalentTo(Result<decimal>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().Be(new TryGetResult<decimal>(parsed));
+            result.Should().Be(Result<decimal>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,11 +46,11 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().Be(new TryGetResult<decimal>(parsed));
+            result.Should().Be(Result<decimal>.Success(parsed));
         }
 
         [TestMethod]
-        public void WhenStringIsBiggerThanDecimalUpperLimit_ReturnPositiveInfinity()
+        public void WhenStringIsBiggerThanDecimalUpperLimit_ReturnFailure()
         {
             //Arrange
             var value = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
@@ -59,7 +59,7 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+            result.Should().BeEquivalentTo(Result<decimal>.Failure());
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+            result.Should().BeEquivalentTo(Result<decimal>.Failure());
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+            result.Should().BeEquivalentTo(Result<decimal>.Failure());
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ public class DecimalTester
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(parsed));
+            result.Should().BeEquivalentTo(Result<decimal>.Success(parsed));
         }
     }
 

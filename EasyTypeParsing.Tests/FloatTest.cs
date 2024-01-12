@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class FloatTester
+public class FloatTest
 {
     [TestClass]
     public class ToFloat : Tester
@@ -18,7 +18,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<float>(false));
+            result.Should().BeEquivalentTo(Result<float>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().Be(new TryGetResult<float>(parsed));
+            result.Should().Be(Result<float>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().Be(new TryGetResult<float>(parsed));
+            result.Should().Be(Result<float>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<float>(float.PositiveInfinity));
+            result.Should().BeEquivalentTo(Result<float>.Success(float.PositiveInfinity));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<float>(float.NegativeInfinity));
+            result.Should().BeEquivalentTo(Result<float>.Success(float.NegativeInfinity));
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<float>(false));
+            result.Should().BeEquivalentTo(Result<float>.Failure());
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ public class FloatTester
             var result = value.ToFloat();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<float>(parsed));
+            result.Should().BeEquivalentTo(Result<float>.Success(parsed));
         }
     }
 

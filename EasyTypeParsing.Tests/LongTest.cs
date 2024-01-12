@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class LongTester
+public class LongTest
 {
     [TestClass]
     public class ToLong : Tester
@@ -18,7 +18,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+            result.Should().BeEquivalentTo(Result<long>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().Be(new TryGetResult<long>(parsed));
+            result.Should().Be(Result<long>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().Be(new TryGetResult<long>(parsed));
+            result.Should().Be(Result<long>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+            result.Should().BeEquivalentTo(Result<long>.Failure());
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+            result.Should().BeEquivalentTo(Result<long>.Failure());
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+            result.Should().BeEquivalentTo(Result<long>.Failure());
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ public class LongTester
             var result = value.ToLong();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<long>(false));
+            result.Should().BeEquivalentTo(Result<long>.Failure());
         }
     }
 

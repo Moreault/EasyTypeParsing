@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class UIntTester
+public class UIntTest
 {
     [TestClass]
     public class ToUInt : Tester
@@ -18,7 +18,7 @@ public class UIntTester
             var result = value.ToUInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+            result.Should().BeEquivalentTo(Result<uint>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class UIntTester
             var result = value.ToUInt();
 
             //Assert
-            result.Should().Be(new TryGetResult<uint>(parsed));
+            result.Should().Be(Result<uint>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class UIntTester
             var result = value.ToUInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+            result.Should().BeEquivalentTo(Result<uint>.Failure());
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ public class UIntTester
             var result = value.ToUInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+            result.Should().BeEquivalentTo(Result<uint>.Failure());
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ public class UIntTester
             var result = value.ToUInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+            result.Should().BeEquivalentTo(Result<uint>.Failure());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ public class UIntTester
             var result = value.ToUInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<uint>(false));
+            result.Should().BeEquivalentTo(Result<uint>.Failure());
         }
     }
 

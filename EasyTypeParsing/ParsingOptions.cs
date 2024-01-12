@@ -1,6 +1,6 @@
 ﻿namespace ToolBX.EasyTypeParsing;
 
-public record ParsingOptions
+public sealed record ParsingOptions
 {
     public IFormatProvider FormatProvider { get; init; } = CultureInfo.InvariantCulture;
     public NumberStyles NumberStyles { get; init; } = NumberStyles.Any;

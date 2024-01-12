@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class ByteTester
+public class ByteTest
 {
     [TestClass]
     public class ToByte : Tester
@@ -18,7 +18,7 @@ public class ByteTester
             var result = value.ToByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class ByteTester
             var result = value.ToByte();
 
             //Assert
-            result.Should().Be(new TryGetResult<byte>(parsed));
+            result.Should().Be(Result<byte>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class ByteTester
             var result = value.ToByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ public class ByteTester
             var result = value.ToByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ public class ByteTester
             var result = value.ToByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ public class ByteTester
             var result = value.ToByte();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<byte>(false));
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
         }
     }
 

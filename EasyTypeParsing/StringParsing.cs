@@ -95,56 +95,56 @@ public static class StringParsing
         return defaultValue;
     }
 
-    public static TryGetResult<T> Parse<T>(this string value, ParsingOptions? options = null) where T : IComparable, IComparable<T>, IEquatable<T>
+    public static Result<T> Parse<T>(this string value, ParsingOptions? options = null) where T : IComparable, IComparable<T>, IEquatable<T>
     {
         var type = typeof(T);
         if (type == typeof(int))
-            return (TryGetResult<T>)(object)value.ToInt(options);
+            return (Result<T>)(object)value.ToInt(options);
         if (type == typeof(long))
-            return (TryGetResult<T>)(object)value.ToLong(options);
+            return (Result<T>)(object)value.ToLong(options);
         if (type == typeof(float))
-            return (TryGetResult<T>)(object)value.ToFloat(options);
+            return (Result<T>)(object)value.ToFloat(options);
         if (type == typeof(double))
-            return (TryGetResult<T>)(object)value.ToDouble(options);
+            return (Result<T>)(object)value.ToDouble(options);
         if (type == typeof(decimal))
-            return (TryGetResult<T>)(object)value.ToDecimal(options);
+            return (Result<T>)(object)value.ToDecimal(options);
         if (type == typeof(byte))
-            return (TryGetResult<T>)(object)value.ToByte(options);
+            return (Result<T>)(object)value.ToByte(options);
         if (type == typeof(sbyte))
-            return (TryGetResult<T>)(object)value.ToSByte(options);
+            return (Result<T>)(object)value.ToSByte(options);
         if (type == typeof(short))
-            return (TryGetResult<T>)(object)value.ToShort(options);
+            return (Result<T>)(object)value.ToShort(options);
         if (type == typeof(char))
-            return (TryGetResult<T>)(object)value.ToChar();
+            return (Result<T>)(object)value.ToChar();
         if (type == typeof(uint))
-            return (TryGetResult<T>)(object)value.ToUInt(options);
+            return (Result<T>)(object)value.ToUInt(options);
         if (type == typeof(ulong))
-            return (TryGetResult<T>)(object)value.ToULong(options);
+            return (Result<T>)(object)value.ToULong(options);
         if (type == typeof(ushort))
-            return (TryGetResult<T>)(object)value.ToUShort(options);
+            return (Result<T>)(object)value.ToUShort(options);
         if (type == typeof(bool))
-            return (TryGetResult<T>)(object)value.ToBool();
+            return (Result<T>)(object)value.ToBool();
         if (type == typeof(DateTime))
-            return (TryGetResult<T>)(object)value.ToDateTime(options);
+            return (Result<T>)(object)value.ToDateTime(options);
         if (type == typeof(DateTimeOffset))
-            return (TryGetResult<T>)(object)value.ToDateTimeOffset(options);
+            return (Result<T>)(object)value.ToDateTimeOffset(options);
         if (type == typeof(Version))
-            return (TryGetResult<T>)(object)value.ToVersion();
+            return (Result<T>)(object)value.ToVersion();
         if (type == typeof(TimeSpan))
-            return (TryGetResult<T>)(object)value.ToTimeSpan(options);
+            return (Result<T>)(object)value.ToTimeSpan(options);
         if (type == typeof(Guid))
-            return (TryGetResult<T>)(object)value.ToGuid();
+            return (Result<T>)(object)value.ToGuid();
         if (type == typeof(BigInteger))
-            return (TryGetResult<T>)(object)value.ToBigInteger(options);
+            return (Result<T>)(object)value.ToBigInteger(options);
 
-        return TryGetResult<T>.Failure;
+        return Result<T>.Failure();
     }
 
-    public static TryGetResult<int> ToInt(this string value, ParsingOptions? options = null)
+    public static Result<int> ToInt(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = int.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<int>(isSuccess, parsedValue);
+        return isSuccess ? Result<int>.Success(parsedValue) : Result<int>.Failure();
     }
 
     public static int ToIntOrDefault(this string value, int defaultValue = default, ParsingOptions? options = null)
@@ -168,10 +168,10 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<int?> ToNullableInt(this string value, ParsingOptions? options = null)
+    public static Result<int?> ToNullableInt(this string value, ParsingOptions? options = null)
     {
         var result = value.ToInt(options);
-        return result.IsSuccess ? new TryGetResult<int?>(true, result.Value) : new TryGetResult<int?>(false);
+        return result.IsSuccess ? Result<int?>.Success(result.Value) : Result<int?>.Failure();
     }
 
     public static int? ToNullableIntOrDefault(this string value, int? defaultValue = default, ParsingOptions? options = null)
@@ -180,10 +180,10 @@ public static class StringParsing
         return result.IsSuccess ? result.Value : defaultValue;
     }
 
-    public static TryGetResult<T> ToEnum<T>(this string value) where T : struct, Enum
+    public static Result<T> ToEnum<T>(this string value) where T : struct, Enum
     {
         var isSuccess = Enum.TryParse(value, true, out T parsedValue);
-        return new TryGetResult<T>(isSuccess, parsedValue);
+        return isSuccess ? Result<T>.Success(parsedValue) : Result<T>.Failure();
     }
 
     public static T ToEnumOrDefault<T>(this string value, T defaultValue = default) where T : struct, Enum
@@ -192,10 +192,10 @@ public static class StringParsing
         return result.IsSuccess ? result.Value : defaultValue;
     }
 
-    public static TryGetResult<T?> ToNullableEnum<T>(this string value) where T : struct, Enum
+    public static Result<T?> ToNullableEnum<T>(this string value) where T : struct, Enum
     {
         var result = value.ToEnum<T>();
-        return result.IsSuccess ? new TryGetResult<T?>(result.Value) : new TryGetResult<T?>(false);
+        return result.IsSuccess ? Result<T?>.Success(result.Value) : Result<T?>.Failure();
     }
 
     public static T? ToNullableEnumOrDefault<T>(this string value, T? defaultValue = default) where T : struct, Enum
@@ -204,11 +204,11 @@ public static class StringParsing
         return result.IsSuccess ? result.Value : defaultValue;
     }
 
-    public static TryGetResult<byte> ToByte(this string value, ParsingOptions? options = null)
+    public static Result<byte> ToByte(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = byte.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<byte>(isSuccess, parsedValue);
+        return isSuccess ? Result<byte>.Success(parsedValue) : Result<byte>.Failure();
     }
 
     public static byte ToByteOrDefault(this string value, byte defaultValue = default, ParsingOptions? options = null)
@@ -231,10 +231,10 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<Guid> ToGuid(this string value)
+    public static Result<Guid> ToGuid(this string value)
     {
         var isSuccess = Guid.TryParse(value, out var parsedValue);
-        return new TryGetResult<Guid>(isSuccess, parsedValue);
+        return isSuccess ? Result<Guid>.Success(parsedValue) : Result<Guid>.Failure();
     }
 
     public static Guid ToGuidOrDefault(this string value, Guid defaultValue = default)
@@ -256,10 +256,10 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<char> ToChar(this string value)
+    public static Result<char> ToChar(this string value)
     {
         var isSuccess = char.TryParse(value, out var parsedValue);
-        return new TryGetResult<char>(isSuccess, parsedValue);
+        return isSuccess ? Result<char>.Success(parsedValue) : Result<char>.Failure();
     }
 
     public static char ToCharOrDefault(this string value, char defaultValue = default)
@@ -281,11 +281,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<long> ToLong(this string value, ParsingOptions? options = null)
+    public static Result<long> ToLong(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = long.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<long>(isSuccess, parsedValue);
+        return isSuccess ? Result<long>.Success(parsedValue) : Result<long>.Failure();
     }
 
     public static long ToLongOrDefault(this string value, long defaultValue = default, ParsingOptions? options = null)
@@ -308,11 +308,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<sbyte> ToSByte(this string value, ParsingOptions? options = null)
+    public static Result<sbyte> ToSByte(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = sbyte.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<sbyte>(isSuccess, parsedValue);
+        return isSuccess ? Result<sbyte>.Success(parsedValue) : Result<sbyte>.Failure();
     }
 
     public static sbyte ToSByteOrDefault(this string value, sbyte defaultValue = default, ParsingOptions? options = null)
@@ -335,11 +335,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<short> ToShort(this string value, ParsingOptions? options = null)
+    public static Result<short> ToShort(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = short.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<short>(isSuccess, parsedValue);
+        return isSuccess ? Result<short>.Success(parsedValue) : Result<short>.Failure();
     }
 
     public static short ToShortOrDefault(this string value, short defaultValue = default, ParsingOptions? options = null)
@@ -362,11 +362,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<uint> ToUInt(this string value, ParsingOptions? options = null)
+    public static Result<uint> ToUInt(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = uint.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<uint>(isSuccess, parsedValue);
+        return isSuccess ? Result<uint>.Success(parsedValue) : Result<uint>.Failure();
     }
 
     public static uint ToUIntOrDefault(this string value, uint defaultValue = default, ParsingOptions? options = null)
@@ -389,11 +389,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<ulong> ToULong(this string value, ParsingOptions? options = null)
+    public static Result<ulong> ToULong(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = ulong.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<ulong>(isSuccess, parsedValue);
+        return isSuccess ? Result<ulong>.Success(parsedValue) : Result<ulong>.Failure();
     }
 
     public static ulong ToULongOrDefault(this string value, ulong defaultValue = default, ParsingOptions? options = null)
@@ -416,11 +416,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<ushort> ToUShort(this string value, ParsingOptions? options = null)
+    public static Result<ushort> ToUShort(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = ushort.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<ushort>(isSuccess, parsedValue);
+        return isSuccess ? Result<ushort>.Success(parsedValue) : Result<ushort>.Failure();
     }
 
     public static ushort ToUShortOrDefault(this string value, ushort defaultValue = default, ParsingOptions? options = null)
@@ -443,11 +443,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<float> ToFloat(this string value, ParsingOptions? options = null)
+    public static Result<float> ToFloat(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = float.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<float>(isSuccess, parsedValue);
+        return isSuccess ? Result<float>.Success(parsedValue) : Result<float>.Failure();
     }
 
     public static float ToFloatOrDefault(this string value, float defaultValue = default, ParsingOptions? options = null)
@@ -470,11 +470,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<double> ToDouble(this string value, ParsingOptions? options = null)
+    public static Result<double> ToDouble(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = double.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<double>(isSuccess, parsedValue);
+        return isSuccess ? Result<double>.Success(parsedValue) : Result<double>.Failure();
     }
 
     public static double ToDoubleOrDefault(this string value, double defaultValue = default, ParsingOptions? options = null)
@@ -497,10 +497,10 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<bool> ToBool(this string value)
+    public static Result<bool> ToBool(this string value)
     {
         var isSuccess = bool.TryParse(value, out var parsedValue);
-        return new TryGetResult<bool>(isSuccess, parsedValue);
+        return isSuccess ? Result<bool>.Success(parsedValue) : Result<bool>.Failure();
     }
 
     public static bool ToBoolOrDefault(this string value, bool defaultValue = default)
@@ -522,11 +522,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<decimal> ToDecimal(this string value, ParsingOptions? options = null)
+    public static Result<decimal> ToDecimal(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = decimal.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<decimal>(isSuccess, parsedValue);
+        return isSuccess ? Result<decimal>.Success(parsedValue) : Result<decimal>.Failure();
     }
 
     public static decimal ToDecimalOrDefault(this string value, decimal defaultValue = default, ParsingOptions? options = null)
@@ -549,11 +549,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<DateTime> ToDateTime(this string value, ParsingOptions? options = null)
+    public static Result<DateTime> ToDateTime(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = DateTime.TryParse(value, options.FormatProvider, options.DateStyles, out var parsedValue);
-        return new TryGetResult<DateTime>(isSuccess, parsedValue);
+        return isSuccess ? Result<DateTime>.Success(parsedValue) : Result<DateTime>.Failure();
     }
 
     public static DateTime ToDateTimeOrDefault(this string value, DateTime defaultValue = default, ParsingOptions? options = null)
@@ -576,11 +576,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<TimeSpan> ToTimeSpan(this string value, ParsingOptions? options = null)
+    public static Result<TimeSpan> ToTimeSpan(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = TimeSpan.TryParse(value, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<TimeSpan>(isSuccess, parsedValue);
+        return isSuccess ? Result<TimeSpan>.Success(parsedValue) : Result<TimeSpan>.Failure();
     }
 
     public static TimeSpan ToTimeSpanOrDefault(this string value, TimeSpan defaultValue = default, ParsingOptions? options = null)
@@ -603,11 +603,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<DateTimeOffset> ToDateTimeOffset(this string value, ParsingOptions? options = null)
+    public static Result<DateTimeOffset> ToDateTimeOffset(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = DateTimeOffset.TryParse(value, options.FormatProvider, options.DateStyles, out var parsedValue);
-        return new TryGetResult<DateTimeOffset>(isSuccess, parsedValue);
+        return isSuccess ? Result<DateTimeOffset>.Success(parsedValue) : Result<DateTimeOffset>.Failure();
     }
 
     public static DateTimeOffset ToDateTimeOffsetOrDefault(this string value, DateTimeOffset defaultValue = default, ParsingOptions? options = null)
@@ -630,10 +630,10 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<Version> ToVersion(this string value)
+    public static Result<Version> ToVersion(this string value)
     {
         var isSuccess = Version.TryParse(value, out var parsedValue);
-        return new TryGetResult<Version>(isSuccess, parsedValue);
+        return isSuccess ? Result<Version>.Success(parsedValue!) : Result<Version>.Failure();
     }
 
     public static Version? ToVersionOrDefault(this string value, Version? defaultValue = default)
@@ -655,10 +655,10 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<IPAddress> ToIpAddress(this string value)
+    public static Result<IPAddress> ToIpAddress(this string value)
     {
         var isSuccess = IPAddress.TryParse(value, out var parsedValue);
-        return new TryGetResult<IPAddress>(isSuccess, parsedValue);
+        return isSuccess ? Result<IPAddress>.Success(parsedValue!) : Result<IPAddress>.Failure();
     }
 
     public static IPAddress? ToIpAddressOrDefault(this string value, IPAddress? defaultValue = default)
@@ -680,11 +680,11 @@ public static class StringParsing
         }
     }
 
-    public static TryGetResult<BigInteger> ToBigInteger(this string value, ParsingOptions? options = null)
+    public static Result<BigInteger> ToBigInteger(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
         var isSuccess = BigInteger.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
-        return new TryGetResult<BigInteger>(isSuccess, parsedValue);
+        return isSuccess ? Result<BigInteger>.Success(parsedValue) : Result<BigInteger>.Failure();
     }
 
     public static BigInteger ToBigIntegerOrDefault(this string value, BigInteger defaultValue = default, ParsingOptions? options = null)

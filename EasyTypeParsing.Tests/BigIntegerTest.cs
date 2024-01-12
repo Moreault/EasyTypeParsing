@@ -1,10 +1,10 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class VersionTester
+public class BigIntegerTest
 {
     [TestClass]
-    public class ToVersion : Tester
+    public class ToBigInteger : Tester
     {
         [TestMethod]
         [DataRow("")]
@@ -15,83 +15,83 @@ public class VersionTester
             //Arrange
 
             //Act
-            var result = value.ToVersion();
+            var result = value.ToBigInteger();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<Version>.Failure);
+            result.Should().BeEquivalentTo(Result<BigInteger>.Failure());
         }
 
         [TestMethod]
-        public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
+        public void WhenValueIsNumeric_ReturnAsBigInteger()
         {
             //Arrange
-            var parsed = Fixture.Create<Version>();
+            var parsed = Fixture.Create<BigInteger>();
             var value = parsed.ToString();
 
             //Act
-            var result = value.ToVersion();
+            var result = value.ToBigInteger();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<Version>(true, parsed));
+            result.Should().BeEquivalentTo(Result<BigInteger>.Success(parsed));
         }
 
         [TestMethod]
-        public void WhenValueIsNotVersion_ReturnFailure()
+        public void WhenValueIsNotNumeric_ReturnFailure()
         {
             //Arrange
             var value = Fixture.Create<string>();
 
             //Act
-            var result = value.ToVersion();
+            var result = value.ToBigInteger();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<Version>.Failure);
+            result.Should().BeEquivalentTo(Result<BigInteger>.Failure());
         }
     }
 
     [TestClass]
-    public class ToVersionOrDefault : Tester
+    public class ToBigIntegerOrDefault : Tester
     {
         [TestMethod]
         [DataRow("")]
         [DataRow(" ")]
         [DataRow(null)]
-        public void WhenValueIsEmpty_ReturnDefault(string value)
+        public void WhenValueIsEmpty_ReturnFailure(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<Version>();
+            var defaultValue = Fixture.Create<BigInteger>();
 
             //Act
-            var result = value.ToVersionOrDefault(defaultValue);
+            var result = value.ToBigIntegerOrDefault(defaultValue);
 
             //Assert
             result.Should().Be(defaultValue);
         }
 
         [TestMethod]
-        public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
+        public void WhenValueIsNumeric_ReturnAsBigInteger()
         {
             //Arrange
-            var parsed = Fixture.Create<Version>();
+            var parsed = Fixture.Create<BigInteger>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<Version>();
+            var defaultValue = Fixture.Create<BigInteger>();
 
             //Act
-            var result = value.ToVersionOrDefault(defaultValue);
+            var result = value.ToBigIntegerOrDefault(defaultValue);
 
             //Assert
-            result.Should().BeEquivalentTo(parsed);
+            result.Should().Be(parsed);
         }
 
         [TestMethod]
-        public void WhenValueIsNotVersion_ReturnDefault()
+        public void WhenValueIsNotNumeric_ReturnFailure()
         {
             //Arrange
             var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<Version>();
+            var defaultValue = Fixture.Create<BigInteger>();
 
             //Act
-            var result = value.ToVersionOrDefault(defaultValue);
+            var result = value.ToBigIntegerOrDefault(defaultValue);
 
             //Assert
             result.Should().Be(defaultValue);
@@ -99,7 +99,7 @@ public class VersionTester
     }
 
     [TestClass]
-    public class ToVersionOrThrow : Tester
+    public class ToBigIntegerOrThrow : Tester
     {
         [TestMethod]
         [DataRow("")]
@@ -110,37 +110,37 @@ public class VersionTester
             //Arrange
 
             //Act
-            Action action = () => value.ToVersionOrThrow();
+            Action action = () => value.ToBigIntegerOrThrow();
 
             //Assert
             action.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
-        public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
+        public void WhenValueIsNumeric_ReturnAsBigInteger()
         {
             //Arrange
-            var parsed = Fixture.Create<Version>();
+            var parsed = Fixture.Create<BigInteger>();
             var value = parsed.ToString();
 
             //Act
-            var result = value.ToVersionOrThrow();
+            var result = value.ToBigIntegerOrThrow();
 
             //Assert
             result.Should().BeEquivalentTo(parsed);
         }
 
         [TestMethod]
-        public void WhenValueIsNotVersion_ReturnFailure()
+        public void WhenValueIsNotNumeric_ReturnFailure()
         {
             //Arrange
             var value = Fixture.Create<string>();
 
             //Act
-            Action action = () => value.ToVersionOrThrow();
+            Action action = () => value.ToBigIntegerOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<Version>>().WithMessage($"Can't parse string to {nameof(Version)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<BigInteger>>().WithMessage($"Can't parse string to {nameof(BigInteger)} : Its value was {value}");
         }
     }
 }

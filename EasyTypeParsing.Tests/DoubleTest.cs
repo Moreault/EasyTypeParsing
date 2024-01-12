@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class DoubleTester
+public class DoubleTest
 {
     [TestClass]
     public class ToDouble : Tester
@@ -18,7 +18,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<double>(false));
+            result.Should().BeEquivalentTo(Result<double>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().Be(new TryGetResult<double>(parsed));
+            result.Should().Be(Result<double>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().Be(new TryGetResult<double>(parsed));
+            result.Should().Be(Result<double>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<double>(double.PositiveInfinity));
+            result.Should().BeEquivalentTo(Result<double>.Success(double.PositiveInfinity));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<double>(double.NegativeInfinity));
+            result.Should().BeEquivalentTo(Result<double>.Success(double.NegativeInfinity));
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<double>(false));
+            result.Should().BeEquivalentTo(Result<double>.Failure());
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ public class DoubleTester
             var result = value.ToDouble();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<double>(parsed));
+            result.Should().BeEquivalentTo(Result<double>.Success(parsed));
         }
     }
 

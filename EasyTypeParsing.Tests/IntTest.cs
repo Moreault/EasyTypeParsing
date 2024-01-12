@@ -1,7 +1,7 @@
 ﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class IntTester
+public class IntTest
 {
     [TestClass]
     public class ToInt : Tester
@@ -18,7 +18,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+            result.Should().BeEquivalentTo(Result<int>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().Be(new TryGetResult<int>(parsed));
+            result.Should().Be(Result<int>.Success(parsed));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().Be(new TryGetResult<int>(parsed));
+            result.Should().Be(Result<int>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+            result.Should().BeEquivalentTo(Result<int>.Failure());
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+            result.Should().BeEquivalentTo(Result<int>.Failure());
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+            result.Should().BeEquivalentTo(Result<int>.Failure());
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ public class IntTester
             var result = value.ToInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int>(false));
+            result.Should().BeEquivalentTo(Result<int>.Failure());
         }
     }
 
@@ -322,7 +322,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+            result.Should().BeEquivalentTo(Result<int?>.Failure());
         }
 
         [TestMethod]
@@ -336,7 +336,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().Be(new TryGetResult<int?>(parsed));
+            result.Should().Be(Result<int?>.Success(parsed));
         }
 
         [TestMethod]
@@ -350,7 +350,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().Be(new TryGetResult<int?>(parsed));
+            result.Should().Be(Result<int?>.Success(parsed));
         }
 
         [TestMethod]
@@ -363,7 +363,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+            result.Should().BeEquivalentTo(Result<int?>.Failure());
         }
 
         [TestMethod]
@@ -376,7 +376,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+            result.Should().BeEquivalentTo(Result<int?>.Failure());
         }
 
         [TestMethod]
@@ -389,7 +389,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int?>(false));
+            result.Should().BeEquivalentTo(Result<int?>.Failure());
         }
 
         [TestMethod]
@@ -402,7 +402,7 @@ public class IntTester
             var result = value.ToNullableInt();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<int?>(false, null));
+            result.Should().BeEquivalentTo(Result<int?>.Failure());
         }
     }
 

@@ -1,9 +1,7 @@
-﻿using EasyTypeParsing.Tests.Utilities;
-
-namespace EasyTypeParsing.Tests;
+﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
-public class DateTimeTester
+public class DateTimeTest
 {
     [TestClass]
     public class ToDateTime : Tester
@@ -20,7 +18,7 @@ public class DateTimeTester
             var result = value.ToDateTime();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<DateTime>.Failure);
+            result.Should().BeEquivalentTo(Result<DateTime>.Failure());
         }
 
         [TestMethod]
@@ -34,7 +32,7 @@ public class DateTimeTester
             var result = value.ToDateTime();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DateTime>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DateTime>.Success(parsed));
         }
 
         [TestMethod]
@@ -48,7 +46,7 @@ public class DateTimeTester
             var result = value.ToDateTime();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DateTime>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DateTime>.Success(parsed));
         }
 
         [TestMethod]
@@ -61,7 +59,7 @@ public class DateTimeTester
             var result = value.ToDateTime();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<DateTime>.Failure);
+            result.Should().BeEquivalentTo(Result<DateTime>.Failure());
         }
 
         [TestMethod]
@@ -75,7 +73,7 @@ public class DateTimeTester
             var result = value.ToDateTime(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<DateTime>.Failure);
+            result.Should().BeEquivalentTo(Result<DateTime>.Failure());
         }
 
         [TestMethod]
@@ -89,7 +87,7 @@ public class DateTimeTester
             var result = value.ToDateTime(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DateTime>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DateTime>.Success(parsed));
         }
     }
 
