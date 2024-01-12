@@ -18,7 +18,7 @@ public class GuidTest
             var result = value.ToGuid();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<Guid>(false));
+            result.Should().BeEquivalentTo(Result<Guid>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class GuidTest
             var result = value.ToGuid();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<Guid>(true, parsed));
+            result.Should().BeEquivalentTo(Result<Guid>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class GuidTest
             var result = value.ToGuid();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<Guid>(false));
+            result.Should().BeEquivalentTo(Result<Guid>.Failure());
         }
     }
 

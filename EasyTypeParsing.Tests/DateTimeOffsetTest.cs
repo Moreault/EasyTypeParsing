@@ -20,7 +20,7 @@ public class DateTimeOffsetTest
             var result = value.ToDateTimeOffset();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<DateTimeOffset>.Failure);
+            result.Should().BeEquivalentTo(Result<DateTimeOffset>.Failure());
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ public class DateTimeOffsetTest
             var result = value.ToDateTimeOffset();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DateTimeOffset>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DateTimeOffset>.Success(parsed));
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ public class DateTimeOffsetTest
             var result = value.ToDateTimeOffset();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<DateTimeOffset>.Failure);
+            result.Should().BeEquivalentTo(Result<DateTimeOffset>.Failure());
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ public class DateTimeOffsetTest
             var result = value.ToDateTimeOffset(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<DateTimeOffset>.Failure);
+            result.Should().BeEquivalentTo(Result<DateTimeOffset>.Failure());
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ public class DateTimeOffsetTest
             var result = value.ToDateTimeOffset(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DateTimeOffset>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DateTimeOffset>.Success(parsed));
         }
     }
 

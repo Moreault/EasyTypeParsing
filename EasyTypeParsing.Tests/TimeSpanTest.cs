@@ -18,7 +18,7 @@ public class TimeSpanTest
             var result = value.ToTimeSpan();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<TimeSpan>.Failure);
+            result.Should().BeEquivalentTo(Result<TimeSpan>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class TimeSpanTest
             var result = value.ToTimeSpan();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<TimeSpan>(true, parsed));
+            result.Should().BeEquivalentTo(Result<TimeSpan>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class TimeSpanTest
             var result = value.ToTimeSpan();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<TimeSpan>.Failure);
+            result.Should().BeEquivalentTo(Result<TimeSpan>.Failure());
         }
     }
 

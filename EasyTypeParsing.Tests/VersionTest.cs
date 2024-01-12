@@ -18,7 +18,7 @@ public class VersionTest
             var result = value.ToVersion();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<Version>.Failure);
+            result.Should().BeEquivalentTo(Result<Version>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class VersionTest
             var result = value.ToVersion();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<Version>(true, parsed));
+            result.Should().BeEquivalentTo(Result<Version>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class VersionTest
             var result = value.ToVersion();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<Version>.Failure);
+            result.Should().BeEquivalentTo(Result<Version>.Failure());
         }
     }
 

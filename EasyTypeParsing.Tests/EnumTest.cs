@@ -18,7 +18,7 @@ public class EnumTest
             var result = value.ToEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum>(false));
+            result.Should().BeEquivalentTo(Result<DummyEnum>.Failure());
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ public class EnumTest
             var result = value.ToEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum>(false));
+            result.Should().BeEquivalentTo(Result<DummyEnum>.Failure());
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class EnumTest
             var result = value.ToEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DummyEnum>.Success(parsed));
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ public class EnumTest
             var result = value.ToEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DummyEnum>.Success(parsed));
         }
     }
 
@@ -142,7 +142,7 @@ public class EnumTest
             var result = value.ToNullableEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum?>(false));
+            result.Should().BeEquivalentTo(Result<DummyEnum?>.Failure());
         }
 
         [TestMethod]
@@ -155,7 +155,7 @@ public class EnumTest
             var result = value.ToNullableEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum?>(false));
+            result.Should().BeEquivalentTo(Result<DummyEnum?>.Failure());
         }
 
         [TestMethod]
@@ -169,7 +169,7 @@ public class EnumTest
             var result = value.ToNullableEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum?>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DummyEnum?>.Success(parsed));
         }
 
         [TestMethod]
@@ -183,7 +183,7 @@ public class EnumTest
             var result = value.ToNullableEnum<DummyEnum>();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<DummyEnum?>(true, parsed));
+            result.Should().BeEquivalentTo(Result<DummyEnum?>.Success(parsed));
         }
     }
 

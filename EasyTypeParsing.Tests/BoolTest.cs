@@ -18,7 +18,7 @@ public class BoolTest
             var result = value.ToBool();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<bool>(false));
+            result.Should().BeEquivalentTo(Result<bool>.Failure());
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ public class BoolTest
             var result = value.ToBool();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<bool>(true, true));
+            result.Should().BeEquivalentTo(Result<bool>.Success(true));
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ public class BoolTest
             var result = value.ToBool();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<bool>(true, true));
+            result.Should().BeEquivalentTo(Result<bool>.Success(true));
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ public class BoolTest
             var result = value.ToBool();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<bool>(true, false));
+            result.Should().BeEquivalentTo(Result<bool>.Success(false));
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ public class BoolTest
             var result = value.ToBool();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<bool>(true, false));
+            result.Should().BeEquivalentTo(Result<bool>.Success(false));
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ public class BoolTest
             var result = value.ToBool();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<bool>(false));
+            result.Should().BeEquivalentTo(Result<bool>.Failure());
         }
     }
 

@@ -18,7 +18,7 @@ public class DecimalTest
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+            result.Should().BeEquivalentTo(Result<decimal>.Failure());
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ public class DecimalTest
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(false));
+            result.Should().BeEquivalentTo(Result<decimal>.Failure());
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ public class DecimalTest
             var result = value.ToDecimal();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<decimal>(parsed));
+            result.Should().BeEquivalentTo(Result<decimal>.Success(parsed));
         }
     }
 

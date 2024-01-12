@@ -18,7 +18,7 @@ public class BigIntegerTest
             var result = value.ToBigInteger();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<BigInteger>.Failure);
+            result.Should().BeEquivalentTo(Result<BigInteger>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class BigIntegerTest
             var result = value.ToBigInteger();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<BigInteger>(true, parsed));
+            result.Should().BeEquivalentTo(Result<BigInteger>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class BigIntegerTest
             var result = value.ToBigInteger();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<BigInteger>.Failure);
+            result.Should().BeEquivalentTo(Result<BigInteger>.Failure());
         }
     }
 

@@ -18,7 +18,7 @@ public class IpAddressTest
             var result = value.ToIpAddress();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<IPAddress>.Failure);
+            result.Should().BeEquivalentTo(Result<IPAddress>.Failure());
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ public class IpAddressTest
             var result = value.ToIpAddress();
 
             //Assert
-            result.Should().BeEquivalentTo(new TryGetResult<IPAddress>(true, parsed));
+            result.Should().BeEquivalentTo(Result<IPAddress>.Success(parsed));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ public class IpAddressTest
             var result = value.ToIpAddress();
 
             //Assert
-            result.Should().BeEquivalentTo(TryGetResult<IPAddress>.Failure);
+            result.Should().BeEquivalentTo(Result<IPAddress>.Failure());
         }
     }
 
