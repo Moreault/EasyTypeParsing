@@ -25,7 +25,7 @@ public class EnumTest
         public void WhenValueDoesNotCorrespondToAnEnumValue_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToEnum<DummyEnum>();
@@ -38,7 +38,7 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueButDoesNotHaveTheSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString().ToUpperInvariant();
 
             //Act
@@ -52,7 +52,7 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueWithSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString();
 
             //Act
@@ -73,7 +73,7 @@ public class EnumTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<DummyEnum>();
+            var defaultValue = Dummy.Create<DummyEnum>();
 
             //Act
             var result = value.ToEnumOrDefault(defaultValue);
@@ -86,8 +86,8 @@ public class EnumTest
         public void WhenValueDoesNotCorrespondToAnEnumValue_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<DummyEnum>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<DummyEnum>();
 
             //Act
             var result = value.ToEnumOrDefault(defaultValue);
@@ -100,9 +100,9 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueButDoesNotHaveTheSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString().ToUpperInvariant();
-            var defaultValue = Fixture.Create<DummyEnum>();
+            var defaultValue = Dummy.Create<DummyEnum>();
 
             //Act
             var result = value.ToEnumOrDefault(defaultValue);
@@ -115,9 +115,9 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueWithSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<DummyEnum>();
+            var defaultValue = Dummy.Create<DummyEnum>();
 
             //Act
             var result = value.ToEnumOrDefault(defaultValue);
@@ -149,7 +149,7 @@ public class EnumTest
         public void WhenValueDoesNotCorrespondToAnEnumValue_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToNullableEnum<DummyEnum>();
@@ -162,7 +162,7 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueButDoesNotHaveTheSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString().ToUpperInvariant();
 
             //Act
@@ -176,7 +176,7 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueWithSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString();
 
             //Act
@@ -212,7 +212,7 @@ public class EnumTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<DummyEnum?>();
+            var defaultValue = Dummy.Create<DummyEnum?>();
 
             //Act
             var result = value.ToNullableEnumOrDefault(defaultValue);
@@ -225,8 +225,8 @@ public class EnumTest
         public void WhenValueDoesNotCorrespondToAnEnumValue_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<DummyEnum?>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<DummyEnum?>();
 
             //Act
             var result = value.ToNullableEnumOrDefault(defaultValue);
@@ -239,9 +239,9 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueButDoesNotHaveTheSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString().ToUpperInvariant();
-            var defaultValue = Fixture.Create<DummyEnum?>();
+            var defaultValue = Dummy.Create<DummyEnum?>();
 
             //Act
             var result = value.ToNullableEnumOrDefault(defaultValue);
@@ -254,9 +254,9 @@ public class EnumTest
         public void WhenValueCorrespondsToAnEnumValueWithSameCasing_Parse()
         {
             //Arrange
-            var parsed = Fixture.Create<DummyEnum>();
+            var parsed = Dummy.Create<DummyEnum>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<DummyEnum?>();
+            var defaultValue = Dummy.Create<DummyEnum?>();
 
             //Act
             var result = value.ToNullableEnumOrDefault(defaultValue);

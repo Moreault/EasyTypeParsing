@@ -43,8 +43,12 @@ public static class StringParsing
             return (T)(object)value.ToGuidOrThrow();
         if (type == typeof(BigInteger))
             return (T)(object)value.ToBigIntegerOrThrow(options);
+        if (type == typeof(TimeOnly))
+            return (T)(object)value.ToTimeOnlyOrThrow(options);
+        if (type == typeof(DateOnly))
+            return (T)(object)value.ToDateOnlyOrThrow(options);
 
-        throw new NotSupportedException($"Can't parse string to {typeof(T).Name} : {typeof(T).Name} is not supported.");
+        throw new NotSupportedException(string.Format(ExceptionMessages.ParsingToTypeIsNotSupported, typeof(T).GetHumanReadableName()));
     }
 
     public static T? ParseOrDefault<T>(this string value, T? defaultValue = default, ParsingOptions? options = null) where T : IComparable, IComparable<T>, IEquatable<T>
@@ -91,6 +95,10 @@ public static class StringParsing
             return (T)(object)value.ToGuidOrDefault((Guid)(object)defaultValue!);
         if (type == typeof(BigInteger))
             return (T)(object)value.ToBigIntegerOrDefault((BigInteger)(object)defaultValue!, options);
+        if (type == typeof(TimeOnly))
+            return (T)(object)value.ToTimeOnlyOrDefault((TimeOnly)(object)defaultValue!, options);
+        if (type == typeof(DateOnly))
+            return (T)(object)value.ToDateOnlyOrDefault((DateOnly)(object)defaultValue!, options);
 
         return defaultValue;
     }
@@ -136,6 +144,10 @@ public static class StringParsing
             return (Result<T>)(object)value.ToGuid();
         if (type == typeof(BigInteger))
             return (Result<T>)(object)value.ToBigInteger(options);
+        if (type == typeof(TimeOnly))
+            return (Result<T>)(object)value.ToTimeOnly(options);
+        if (type == typeof(DateOnly))
+            return (Result<T>)(object)value.ToDateOnly(options);
 
         return Result<T>.Failure();
     }
@@ -207,6 +219,8 @@ public static class StringParsing
     public static Result<byte> ToByte(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
+        if (!value.IsInteger()) return Result<byte>.Failure();
+
         var isSuccess = byte.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
         return isSuccess ? Result<byte>.Success(parsedValue) : Result<byte>.Failure();
     }
@@ -221,8 +235,10 @@ public static class StringParsing
     {
         if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
         options ??= new ParsingOptions();
+
         try
         {
+            ThrowIfNonInteger(value);
             return byte.Parse(value, options.NumberStyles, options.FormatProvider);
         }
         catch (Exception e)
@@ -311,6 +327,8 @@ public static class StringParsing
     public static Result<sbyte> ToSByte(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
+        if (!value.IsInteger()) return Result<sbyte>.Failure();
+
         var isSuccess = sbyte.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
         return isSuccess ? Result<sbyte>.Success(parsedValue) : Result<sbyte>.Failure();
     }
@@ -327,6 +345,7 @@ public static class StringParsing
         options ??= new ParsingOptions();
         try
         {
+            value.ThrowIfNonInteger();
             return sbyte.Parse(value, options.NumberStyles, options.FormatProvider);
         }
         catch (Exception e)
@@ -338,6 +357,7 @@ public static class StringParsing
     public static Result<short> ToShort(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
+        if (!value.IsInteger()) return Result<short>.Failure();
         var isSuccess = short.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
         return isSuccess ? Result<short>.Success(parsedValue) : Result<short>.Failure();
     }
@@ -354,6 +374,7 @@ public static class StringParsing
         options ??= new ParsingOptions();
         try
         {
+            value.ThrowIfNonInteger();
             return short.Parse(value, options.NumberStyles, options.FormatProvider);
         }
         catch (Exception e)
@@ -419,6 +440,7 @@ public static class StringParsing
     public static Result<ushort> ToUShort(this string value, ParsingOptions? options = null)
     {
         options ??= new ParsingOptions();
+        if (!value.IsInteger()) return Result<ushort>.Failure();
         var isSuccess = ushort.TryParse(value, options.NumberStyles, options.FormatProvider, out var parsedValue);
         return isSuccess ? Result<ushort>.Success(parsedValue) : Result<ushort>.Failure();
     }
@@ -435,6 +457,7 @@ public static class StringParsing
         options ??= new ParsingOptions();
         try
         {
+            value.ThrowIfNonInteger();
             return ushort.Parse(value, options.NumberStyles, options.FormatProvider);
         }
         catch (Exception e)
@@ -630,6 +653,60 @@ public static class StringParsing
         }
     }
 
+    public static Result<TimeOnly> ToTimeOnly(this string value, ParsingOptions? options = null)
+    {
+        options ??= new ParsingOptions();
+        var isSuccess = TimeOnly.TryParse(value, options.FormatProvider, options.DateStyles, out var parsedValue);
+        return isSuccess ? Result<TimeOnly>.Success(parsedValue) : Result<TimeOnly>.Failure();
+    }
+
+    public static TimeOnly ToTimeOnlyOrDefault(this string value, TimeOnly defaultValue = default, ParsingOptions? options = null)
+    {
+        var result = value.ToTimeOnly(options);
+        return result.IsSuccess ? result.Value : defaultValue;
+    }
+
+    public static TimeOnly ToTimeOnlyOrThrow(this string value, ParsingOptions? options = null)
+    {
+        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
+        options ??= new ParsingOptions();
+        try
+        {
+            return TimeOnly.Parse(value, options.FormatProvider, options.DateStyles);
+        }
+        catch (Exception e)
+        {
+            throw new StringParsingException<TimeOnly>(value, e);
+        }
+    }
+
+    public static Result<DateOnly> ToDateOnly(this string value, ParsingOptions? options = null)
+    {
+        options ??= new ParsingOptions();
+        var isSuccess = DateOnly.TryParse(value, options.FormatProvider, options.DateStyles, out var parsedValue);
+        return isSuccess ? Result<DateOnly>.Success(parsedValue) : Result<DateOnly>.Failure();
+    }
+
+    public static DateOnly ToDateOnlyOrDefault(this string value, DateOnly defaultValue = default, ParsingOptions? options = null)
+    {
+        var result = value.ToDateOnly(options);
+        return result.IsSuccess ? result.Value : defaultValue;
+    }
+
+    public static DateOnly ToDateOnlyOrThrow(this string value, ParsingOptions? options = null)
+    {
+        if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
+        options ??= new ParsingOptions();
+        try
+        {
+            return DateOnly.Parse(value, options.FormatProvider, options.DateStyles);
+        }
+        catch (Exception e)
+        {
+            throw new StringParsingException<DateOnly>(value, e);
+        }
+    }
+
     public static Result<Version> ToVersion(this string value)
     {
         var isSuccess = Version.TryParse(value, out var parsedValue);
@@ -705,5 +782,12 @@ public static class StringParsing
         {
             throw new StringParsingException<BigInteger>(value, e);
         }
+    }
+
+    private static bool IsInteger(this string value) => !string.IsNullOrWhiteSpace(value) && value.TrimStart('-').All(char.IsDigit);
+
+    private static void ThrowIfNonInteger(this string value)
+    {
+        if (!value.IsInteger()) throw new ArgumentException(string.Format(ExceptionMessages.ValueIsNotInteger, value));
     }
 }

@@ -25,7 +25,7 @@ public class UShortTest
         public void WhenStringIsUShort_ReturnAsUShort()
         {
             //Arrange
-            var parsed = Fixture.Create<ushort>();
+            var parsed = Dummy.Create<ushort>();
             var value = parsed.ToString();
 
             //Act
@@ -65,7 +65,7 @@ public class UShortTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToUShort();
@@ -78,7 +78,7 @@ public class UShortTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<ushort>()}.{Fixture.Create<ushort>()}";
+            var value = $"{Dummy.Create<ushort>()}.{Dummy.Create<ushort>()}";
 
             //Act
             var result = value.ToUShort();
@@ -98,7 +98,7 @@ public class UShortTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<ushort>();
+            var defaultValue = Dummy.Create<ushort>();
 
             //Act
             var result = value.ToUShortOrDefault(defaultValue);
@@ -111,9 +111,9 @@ public class UShortTest
         public void WhenStringIsPositiveUShort_ReturnAsUShort()
         {
             //Arrange
-            var parsed = Fixture.Create<ushort>();
+            var parsed = Dummy.Create<ushort>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<ushort>();
+            var defaultValue = Dummy.Create<ushort>();
 
             //Act
             var result = value.ToUShortOrDefault(defaultValue);
@@ -127,7 +127,7 @@ public class UShortTest
         {
             //Arrange
             var value = "18446744073709551616";
-            var defaultValue = Fixture.Create<ushort>();
+            var defaultValue = Dummy.Create<ushort>();
 
             //Act
             var result = value.ToUShortOrDefault(defaultValue);
@@ -141,7 +141,7 @@ public class UShortTest
         {
             //Arrange
             var value = " -1";
-            var defaultValue = Fixture.Create<ushort>();
+            var defaultValue = Dummy.Create<ushort>();
 
             //Act
             var result = value.ToUShortOrDefault(defaultValue);
@@ -154,8 +154,8 @@ public class UShortTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<ushort>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<ushort>();
 
             //Act
             var result = value.ToUShortOrDefault(defaultValue);
@@ -168,8 +168,8 @@ public class UShortTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<ushort>()}.{Fixture.Create<ushort>()}";
-            var defaultValue = Fixture.Create<ushort>();
+            var value = $"{Dummy.Create<ushort>()}.{Dummy.Create<ushort>()}";
+            var defaultValue = Dummy.Create<ushort>();
 
             //Act
             var result = value.ToUShortOrDefault(defaultValue);
@@ -201,7 +201,7 @@ public class UShortTest
         public void WhenConvertingToUShortAndStringIsPositiveUShort_ReturnAsUShort()
         {
             //Arrange
-            var parsed = Fixture.Create<ushort>();
+            var parsed = Dummy.Create<ushort>();
             var value = parsed.ToString();
 
             //Act
@@ -221,7 +221,7 @@ public class UShortTest
             Action action = () => value.ToUShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
         }
 
         [TestMethod]
@@ -234,33 +234,33 @@ public class UShortTest
             Action action = () => value.ToUShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
         }
 
         [TestMethod]
         public void WhenConvertingToUShortAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToUShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
         }
 
         [TestMethod]
         public void WhenConvertingToUShortAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<ushort>()}.{Fixture.Create<ushort>()}";
+            var value = $"{Dummy.Create<ushort>()}.{Dummy.Create<ushort>()}";
 
             //Act
             Action action = () => value.ToUShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
         }
     }
 }

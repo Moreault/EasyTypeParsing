@@ -25,7 +25,7 @@ public class IpAddressTest
         public void WhenIsCorrectlyFormattedIPAddress_ReturnAsIPAddress()
         {
             //Arrange
-            var parsed = Fixture.Create<IPAddress>();
+            var parsed = Dummy.Create<IPAddress>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class IpAddressTest
         public void WhenValueIsNotIPAddress_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToIpAddress();
@@ -59,7 +59,7 @@ public class IpAddressTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<IPAddress>();
+            var defaultValue = Dummy.Create<IPAddress>();
 
             //Act
             var result = value.ToIpAddressOrDefault(defaultValue);
@@ -72,9 +72,9 @@ public class IpAddressTest
         public void WhenIsCorrectlyFormattedIPAddress_ReturnAsIPAddress()
         {
             //Arrange
-            var parsed = Fixture.Create<IPAddress>();
+            var parsed = Dummy.Create<IPAddress>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<IPAddress>();
+            var defaultValue = Dummy.Create<IPAddress>();
 
             //Act
             var result = value.ToIpAddressOrDefault(defaultValue);
@@ -87,8 +87,8 @@ public class IpAddressTest
         public void WhenValueIsNotIPAddress_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<IPAddress>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<IPAddress>();
 
             //Act
             var result = value.ToIpAddressOrDefault(defaultValue);
@@ -120,7 +120,7 @@ public class IpAddressTest
         public void WhenIsCorrectlyFormattedIPAddress_ReturnAsIPAddress()
         {
             //Arrange
-            var parsed = Fixture.Create<IPAddress>();
+            var parsed = Dummy.Create<IPAddress>();
             var value = parsed.ToString();
 
             //Act
@@ -134,13 +134,13 @@ public class IpAddressTest
         public void WhenValueIsNotIPAddress_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToIpAddressOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<IPAddress>>().WithMessage($"Can't parse string to {nameof(IPAddress)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<IPAddress>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(IPAddress)));
         }
     }
 }

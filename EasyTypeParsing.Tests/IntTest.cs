@@ -25,7 +25,7 @@ public class IntTest
         public void WhenStringIsNegativeInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = -Fixture.Create<int>();
+            var parsed = -Dummy.Create<int>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class IntTest
         public void WhenStringIsPositiveInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = Fixture.Create<int>();
+            var parsed = Dummy.Create<int>();
             var value = parsed.ToString();
 
             //Act
@@ -79,7 +79,7 @@ public class IntTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToInt();
@@ -92,7 +92,7 @@ public class IntTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+            var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
 
             //Act
             var result = value.ToInt();
@@ -112,7 +112,7 @@ public class IntTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -125,9 +125,9 @@ public class IntTest
         public void WhenStringIsNegativeInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = -Fixture.Create<int>();
+            var parsed = -Dummy.Create<int>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -140,9 +140,9 @@ public class IntTest
         public void WhenStringIsPositiveInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = Fixture.Create<int>();
+            var parsed = Dummy.Create<int>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -156,7 +156,7 @@ public class IntTest
         {
             //Arrange
             var value = ((long)int.MaxValue + 1).ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -170,7 +170,7 @@ public class IntTest
         {
             //Arrange
             var value = ((long)int.MinValue - 1).ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -183,8 +183,8 @@ public class IntTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<int>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -197,8 +197,8 @@ public class IntTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
-            var defaultValue = Fixture.Create<int>();
+            var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToIntOrDefault(defaultValue);
@@ -230,7 +230,7 @@ public class IntTest
         public void WhenConvertingToIntAndStringIsNegativeInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = -Fixture.Create<int>();
+            var parsed = -Dummy.Create<int>();
             var value = parsed.ToString();
 
             //Act
@@ -244,7 +244,7 @@ public class IntTest
         public void WhenConvertingToIntAndStringIsPositiveInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = Fixture.Create<int>();
+            var parsed = Dummy.Create<int>();
             var value = parsed.ToString();
 
             //Act
@@ -264,7 +264,7 @@ public class IntTest
             Action action = () => value.ToIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
         }
 
         [TestMethod]
@@ -277,33 +277,33 @@ public class IntTest
             Action action = () => value.ToIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
         }
 
         [TestMethod]
         public void WhenConvertingToIntAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
         }
 
         [TestMethod]
         public void WhenConvertingToIntAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+            var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
 
             //Act
             Action action = () => value.ToIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
         }
     }
 
@@ -329,7 +329,7 @@ public class IntTest
         public void WhenStringIsNegativeInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = -Fixture.Create<int>();
+            var parsed = -Dummy.Create<int>();
             var value = parsed.ToString();
 
             //Act
@@ -343,7 +343,7 @@ public class IntTest
         public void WhenStringIsPositiveInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = Fixture.Create<int>();
+            var parsed = Dummy.Create<int>();
             var value = parsed.ToString();
 
             //Act
@@ -383,7 +383,7 @@ public class IntTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToNullableInt();
@@ -396,13 +396,130 @@ public class IntTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+            var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
 
             //Act
             var result = value.ToNullableInt();
 
             //Assert
             result.Should().BeEquivalentTo(Result<int?>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasOneDigitBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(0, 9)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasTwoDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(10, 99)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasThreeDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(100, 999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasFourDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(1000, 9999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasFiveDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(10000, 99999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasSixDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(100000, 999999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasSevenDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(1000000, 9999999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasEightDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(10000000, 99999999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
+        }
+
+        [TestMethod]
+        public void WhenStringHasNineDigitsBeforeFloatingPoint_ReturnFailure()
+        {
+            //Arrange
+            var value = $"{Dummy.Number.Between(100000000, 999999999)}.{Dummy.Create<int>()}";
+
+            //Act
+            var result = value.ToByte();
+
+            //Assert
+            result.Should().BeEquivalentTo(Result<byte>.Failure());
         }
     }
 
@@ -431,7 +548,7 @@ public class IntTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);
@@ -444,9 +561,9 @@ public class IntTest
         public void WhenStringIsNegativeInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = -Fixture.Create<int>();
+            var parsed = -Dummy.Create<int>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);
@@ -459,9 +576,9 @@ public class IntTest
         public void WhenStringIsPositiveInt_ReturnAsInt()
         {
             //Arrange
-            var parsed = Fixture.Create<int>();
+            var parsed = Dummy.Create<int>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);
@@ -475,7 +592,7 @@ public class IntTest
         {
             //Arrange
             var value = ((long)int.MaxValue + 1).ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);
@@ -489,7 +606,7 @@ public class IntTest
         {
             //Arrange
             var value = ((long)int.MinValue - 1).ToString();
-            var defaultValue = Fixture.Create<int>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);
@@ -502,8 +619,8 @@ public class IntTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<int>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);
@@ -516,8 +633,8 @@ public class IntTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
-            var defaultValue = Fixture.Create<int>();
+            var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
+            var defaultValue = Dummy.Create<int>();
 
             //Act
             var result = value.ToNullableIntOrDefault(defaultValue);

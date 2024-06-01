@@ -25,7 +25,7 @@ public class BigIntegerTest
         public void WhenValueIsNumeric_ReturnAsBigInteger()
         {
             //Arrange
-            var parsed = Fixture.Create<BigInteger>();
+            var parsed = Dummy.Create<BigInteger>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class BigIntegerTest
         public void WhenValueIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToBigInteger();
@@ -59,7 +59,7 @@ public class BigIntegerTest
         public void WhenValueIsEmpty_ReturnFailure(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<BigInteger>();
+            var defaultValue = Dummy.Create<BigInteger>();
 
             //Act
             var result = value.ToBigIntegerOrDefault(defaultValue);
@@ -72,9 +72,9 @@ public class BigIntegerTest
         public void WhenValueIsNumeric_ReturnAsBigInteger()
         {
             //Arrange
-            var parsed = Fixture.Create<BigInteger>();
+            var parsed = Dummy.Create<BigInteger>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<BigInteger>();
+            var defaultValue = Dummy.Create<BigInteger>();
 
             //Act
             var result = value.ToBigIntegerOrDefault(defaultValue);
@@ -87,8 +87,8 @@ public class BigIntegerTest
         public void WhenValueIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<BigInteger>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<BigInteger>();
 
             //Act
             var result = value.ToBigIntegerOrDefault(defaultValue);
@@ -120,7 +120,7 @@ public class BigIntegerTest
         public void WhenValueIsNumeric_ReturnAsBigInteger()
         {
             //Arrange
-            var parsed = Fixture.Create<BigInteger>();
+            var parsed = Dummy.Create<BigInteger>();
             var value = parsed.ToString();
 
             //Act
@@ -134,13 +134,13 @@ public class BigIntegerTest
         public void WhenValueIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToBigIntegerOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<BigInteger>>().WithMessage($"Can't parse string to {nameof(BigInteger)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<BigInteger>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(BigInteger)));
         }
     }
 }

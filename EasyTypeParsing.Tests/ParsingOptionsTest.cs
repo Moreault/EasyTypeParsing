@@ -84,7 +84,7 @@ public sealed class ParsingOptionsTest : RecordTester<ParsingOptions>
     }
 
     [TestMethod]
-    public void Always_HasValueEquality() => Ensure.ValueEquality<ParsingOptions>(Fixture);
+    public void Always_HasValueEquality() => Ensure.ValueEquality<ParsingOptions>(Dummy);
 }
 
 public static class CustomCases

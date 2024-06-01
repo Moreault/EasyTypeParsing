@@ -25,7 +25,7 @@ public class SByteTest
         public void WhenStringIsNegativeSByte_ReturnAsSByte()
         {
             //Arrange
-            var parsed = (sbyte)-Fixture.Create<sbyte>();
+            var parsed = (sbyte)-Dummy.Create<sbyte>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class SByteTest
         public void WhenStringIsPositiveSByte_ReturnAsSByte()
         {
             //Arrange
-            var parsed = Fixture.Create<sbyte>();
+            var parsed = Dummy.Create<sbyte>();
             var value = parsed.ToString();
 
             //Act
@@ -79,7 +79,7 @@ public class SByteTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToSByte();
@@ -92,7 +92,7 @@ public class SByteTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<sbyte>()}.{Fixture.Create<sbyte>()}";
+            var value = $"{Dummy.Create<sbyte>()}.{Dummy.Create<sbyte>()}";
 
             //Act
             var result = value.ToSByte();
@@ -112,7 +112,7 @@ public class SByteTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<sbyte>();
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -125,9 +125,9 @@ public class SByteTest
         public void WhenStringIsNegativeSByte_ReturnAsSByte()
         {
             //Arrange
-            var parsed = (sbyte)-Fixture.Create<sbyte>();
+            var parsed = (sbyte)-Dummy.Create<sbyte>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<sbyte>();
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -140,9 +140,9 @@ public class SByteTest
         public void WhenStringIsPositiveSByte_ReturnAsSByte()
         {
             //Arrange
-            var parsed = Fixture.Create<sbyte>();
+            var parsed = Dummy.Create<sbyte>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<sbyte>();
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -156,7 +156,7 @@ public class SByteTest
         {
             //Arrange
             var value = "128";
-            var defaultValue = Fixture.Create<sbyte>();
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -170,7 +170,7 @@ public class SByteTest
         {
             //Arrange
             var value = " -129";
-            var defaultValue = Fixture.Create<sbyte>();
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -183,8 +183,8 @@ public class SByteTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<sbyte>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -197,8 +197,8 @@ public class SByteTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<sbyte>()}.{Fixture.Create<sbyte>()}";
-            var defaultValue = Fixture.Create<sbyte>();
+            var value = $"{Dummy.Create<sbyte>()}.{Dummy.Create<sbyte>()}";
+            var defaultValue = Dummy.Create<sbyte>();
 
             //Act
             var result = value.ToSByteOrDefault(defaultValue);
@@ -230,7 +230,7 @@ public class SByteTest
         public void WhenConvertingToSByteAndStringIsNegativeSByte_ReturnAsSByte()
         {
             //Arrange
-            var parsed = (sbyte)-Fixture.Create<sbyte>();
+            var parsed = (sbyte)-Dummy.Create<sbyte>();
             var value = parsed.ToString();
 
             //Act
@@ -244,7 +244,7 @@ public class SByteTest
         public void WhenConvertingToSByteAndStringIsPositiveSByte_ReturnAsSByte()
         {
             //Arrange
-            var parsed = Fixture.Create<sbyte>();
+            var parsed = Dummy.Create<sbyte>();
             var value = parsed.ToString();
 
             //Act
@@ -264,7 +264,7 @@ public class SByteTest
             Action action = () => value.ToSByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
         }
 
         [TestMethod]
@@ -277,33 +277,33 @@ public class SByteTest
             Action action = () => value.ToSByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
         }
 
         [TestMethod]
         public void WhenConvertingToSByteAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToSByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
         }
 
         [TestMethod]
         public void WhenConvertingToSByteAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<sbyte>()}.{Fixture.Create<sbyte>()}";
+            var value = $"{Dummy.Create<sbyte>()}.{Dummy.Create<sbyte>()}";
 
             //Act
             Action action = () => value.ToSByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
         }
     }
 }

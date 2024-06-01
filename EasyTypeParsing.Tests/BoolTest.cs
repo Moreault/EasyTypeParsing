@@ -77,7 +77,7 @@ public class BoolTest
         public void WhenValueIsNotTrueOrFalse_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToBool();
@@ -97,7 +97,7 @@ public class BoolTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<bool>();
+            var defaultValue = Dummy.Create<bool>();
 
             //Act
             var result = value.ToBoolOrDefault(defaultValue);
@@ -111,7 +111,7 @@ public class BoolTest
         {
             //Arrange
             var value = true.ToString();
-            var defaultValue = Fixture.Create<bool>();
+            var defaultValue = Dummy.Create<bool>();
 
             //Act
             var result = value.ToBoolOrDefault(defaultValue);
@@ -125,7 +125,7 @@ public class BoolTest
         {
             //Arrange
             var value = "TrUe";
-            var defaultValue = Fixture.Create<bool>();
+            var defaultValue = Dummy.Create<bool>();
 
             //Act
             var result = value.ToBoolOrDefault(defaultValue);
@@ -139,7 +139,7 @@ public class BoolTest
         {
             //Arrange
             var value = false.ToString();
-            var defaultValue = Fixture.Create<bool>();
+            var defaultValue = Dummy.Create<bool>();
 
             //Act
             var result = value.ToBoolOrDefault(defaultValue);
@@ -153,7 +153,7 @@ public class BoolTest
         {
             //Arrange
             var value = "FaLsE";
-            var defaultValue = Fixture.Create<bool>();
+            var defaultValue = Dummy.Create<bool>();
 
             //Act
             var result = value.ToBoolOrDefault(defaultValue);
@@ -166,8 +166,8 @@ public class BoolTest
         public void WhenValueIsNotTrueOrFalse_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<bool>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<bool>();
 
             //Act
             var result = value.ToBoolOrDefault(defaultValue);
@@ -251,13 +251,13 @@ public class BoolTest
         public void WhenValueIsNotTrueOrFalse_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToBoolOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<bool>>().WithMessage($"Can't parse string to {nameof(Boolean)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<bool>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Boolean)));
         }
     }
 }

@@ -25,7 +25,7 @@ public class UIntTest
         public void WhenStringIsUInt_ReturnAsUInt()
         {
             //Arrange
-            var parsed = Fixture.Create<uint>();
+            var parsed = Dummy.Create<uint>();
             var value = parsed.ToString();
 
             //Act
@@ -65,7 +65,7 @@ public class UIntTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToUInt();
@@ -78,7 +78,7 @@ public class UIntTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<uint>()}.{Fixture.Create<uint>()}";
+            var value = $"{Dummy.Create<uint>()}.{Dummy.Create<uint>()}";
 
             //Act
             var result = value.ToUInt();
@@ -98,7 +98,7 @@ public class UIntTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<uint>();
+            var defaultValue = Dummy.Create<uint>();
 
             //Act
             var result = value.ToUIntOrDefault(defaultValue);
@@ -111,9 +111,9 @@ public class UIntTest
         public void WhenStringIsPositiveUInt_ReturnAsUInt()
         {
             //Arrange
-            var parsed = Fixture.Create<uint>();
+            var parsed = Dummy.Create<uint>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<uint>();
+            var defaultValue = Dummy.Create<uint>();
 
             //Act
             var result = value.ToUIntOrDefault(defaultValue);
@@ -127,7 +127,7 @@ public class UIntTest
         {
             //Arrange
             var value = "4294967296";
-            var defaultValue = Fixture.Create<uint>();
+            var defaultValue = Dummy.Create<uint>();
 
             //Act
             var result = value.ToUIntOrDefault(defaultValue);
@@ -141,7 +141,7 @@ public class UIntTest
         {
             //Arrange
             var value = " -1";
-            var defaultValue = Fixture.Create<uint>();
+            var defaultValue = Dummy.Create<uint>();
 
             //Act
             var result = value.ToUIntOrDefault(defaultValue);
@@ -154,8 +154,8 @@ public class UIntTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<uint>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<uint>();
 
             //Act
             var result = value.ToUIntOrDefault(defaultValue);
@@ -168,8 +168,8 @@ public class UIntTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<uint>()}.{Fixture.Create<uint>()}";
-            var defaultValue = Fixture.Create<uint>();
+            var value = $"{Dummy.Create<uint>()}.{Dummy.Create<uint>()}";
+            var defaultValue = Dummy.Create<uint>();
 
             //Act
             var result = value.ToUIntOrDefault(defaultValue);
@@ -201,7 +201,7 @@ public class UIntTest
         public void WhenConvertingToUIntAndStringIsPositiveUInt_ReturnAsUInt()
         {
             //Arrange
-            var parsed = Fixture.Create<uint>();
+            var parsed = Dummy.Create<uint>();
             var value = parsed.ToString();
 
             //Act
@@ -221,7 +221,7 @@ public class UIntTest
             Action action = () => value.ToUIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
         }
 
         [TestMethod]
@@ -234,33 +234,33 @@ public class UIntTest
             Action action = () => value.ToUIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
         }
 
         [TestMethod]
         public void WhenConvertingToUIntAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToUIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
         }
 
         [TestMethod]
         public void WhenConvertingToUIntAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<uint>()}.{Fixture.Create<uint>()}";
+            var value = $"{Dummy.Create<uint>()}.{Dummy.Create<uint>()}";
 
             //Act
             Action action = () => value.ToUIntOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
         }
     }
 }

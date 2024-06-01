@@ -25,7 +25,7 @@ public class VersionTest
         public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
         {
             //Arrange
-            var parsed = Fixture.Create<Version>();
+            var parsed = Dummy.Create<Version>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class VersionTest
         public void WhenValueIsNotVersion_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToVersion();
@@ -59,7 +59,7 @@ public class VersionTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<Version>();
+            var defaultValue = Dummy.Create<Version>();
 
             //Act
             var result = value.ToVersionOrDefault(defaultValue);
@@ -72,9 +72,9 @@ public class VersionTest
         public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
         {
             //Arrange
-            var parsed = Fixture.Create<Version>();
+            var parsed = Dummy.Create<Version>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<Version>();
+            var defaultValue = Dummy.Create<Version>();
 
             //Act
             var result = value.ToVersionOrDefault(defaultValue);
@@ -87,8 +87,8 @@ public class VersionTest
         public void WhenValueIsNotVersion_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<Version>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<Version>();
 
             //Act
             var result = value.ToVersionOrDefault(defaultValue);
@@ -120,7 +120,7 @@ public class VersionTest
         public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
         {
             //Arrange
-            var parsed = Fixture.Create<Version>();
+            var parsed = Dummy.Create<Version>();
             var value = parsed.ToString();
 
             //Act
@@ -134,13 +134,13 @@ public class VersionTest
         public void WhenValueIsNotVersion_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToVersionOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<Version>>().WithMessage($"Can't parse string to {nameof(Version)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<Version>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Version)));
         }
     }
 }

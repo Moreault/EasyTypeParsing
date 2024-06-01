@@ -25,7 +25,7 @@ public class ByteTest
         public void WhenStringIsPositiveByte_ReturnAsByte()
         {
             //Arrange
-            var parsed = Fixture.Create<byte>();
+            var parsed = Dummy.Create<byte>();
             var value = parsed.ToString();
 
             //Act
@@ -65,7 +65,7 @@ public class ByteTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToByte();
@@ -78,7 +78,7 @@ public class ByteTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<byte>()}.{Fixture.Create<byte>()}";
+            var value = $"{Dummy.Create<byte>()}.{Dummy.Create<byte>()}";
 
             //Act
             var result = value.ToByte();
@@ -98,7 +98,7 @@ public class ByteTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<byte>();
+            var defaultValue = Dummy.Create<byte>();
 
             //Act
             var result = value.ToByteOrDefault(defaultValue);
@@ -111,9 +111,9 @@ public class ByteTest
         public void WhenStringIsPositiveByte_ReturnAsByte()
         {
             //Arrange
-            var parsed = Fixture.Create<byte>();
+            var parsed = Dummy.Create<byte>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<byte>();
+            var defaultValue = Dummy.Create<byte>();
 
             //Act
             var result = value.ToByteOrDefault(defaultValue);
@@ -127,7 +127,7 @@ public class ByteTest
         {
             //Arrange
             var value = ((long)byte.MaxValue + 1).ToString();
-            var defaultValue = Fixture.Create<byte>();
+            var defaultValue = Dummy.Create<byte>();
 
             //Act
             var result = value.ToByteOrDefault(defaultValue);
@@ -141,7 +141,7 @@ public class ByteTest
         {
             //Arrange
             var value = ((long)byte.MinValue - 1).ToString();
-            var defaultValue = Fixture.Create<byte>();
+            var defaultValue = Dummy.Create<byte>();
 
             //Act
             var result = value.ToByteOrDefault(defaultValue);
@@ -154,8 +154,8 @@ public class ByteTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<byte>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<byte>();
 
             //Act
             var result = value.ToByteOrDefault(defaultValue);
@@ -165,11 +165,42 @@ public class ByteTest
         }
 
         [TestMethod]
-        public void WhenStringHasFloatingPoint_ReturnDefaultValue()
+        public void WhenStringHasFloatingPointWithOneDigit_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<byte>()}.{Fixture.Create<byte>()}";
-            var defaultValue = Fixture.Create<byte>();
+            var firstPart = Dummy.Number.Between<byte>(0, 9).Create();
+            var value = $"{firstPart}.{Dummy.Create<byte>()}";
+            var defaultValue = Dummy.Create<byte>();
+
+            //Act
+            var result = value.ToByteOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+
+        [TestMethod]
+        public void WhenStringHasFloatingPointWithTwoDigits_ReturnDefaultValue()
+        {
+            //Arrange
+            var firstPart = Dummy.Number.Between<byte>(10, 99).Create();
+            var value = $"{firstPart}.{Dummy.Create<byte>()}";
+            var defaultValue = Dummy.Create<byte>();
+
+            //Act
+            var result = value.ToByteOrDefault(defaultValue);
+
+            //Assert
+            result.Should().Be(defaultValue);
+        }
+
+        [TestMethod]
+        public void WhenStringHasFloatingPointWithThreeDigits_ReturnDefaultValue()
+        {
+            //Arrange
+            var firstPart = Dummy.Number.Between<byte>(100, byte.MaxValue).Create();
+            var value = $"{firstPart}.{Dummy.Create<byte>()}";
+            var defaultValue = Dummy.Create<byte>();
 
             //Act
             var result = value.ToByteOrDefault(defaultValue);
@@ -201,7 +232,7 @@ public class ByteTest
         public void WhenConvertingToByteAndStringIsPositiveByte_ReturnAsByte()
         {
             //Arrange
-            var parsed = Fixture.Create<byte>();
+            var parsed = Dummy.Create<byte>();
             var value = parsed.ToString();
 
             //Act
@@ -221,7 +252,7 @@ public class ByteTest
             Action action = () => value.ToByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
         }
 
         [TestMethod]
@@ -234,33 +265,33 @@ public class ByteTest
             Action action = () => value.ToByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
         }
 
         [TestMethod]
         public void WhenConvertingToByteAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
         }
 
         [TestMethod]
         public void WhenConvertingToByteAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<byte>()}.{Fixture.Create<byte>()}";
+            var value = $"{Dummy.Create<byte>()}.{Dummy.Create<byte>()}";
 
             //Act
             Action action = () => value.ToByteOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
         }
     }
 }
