@@ -25,7 +25,7 @@ public class ULongTest
         public void WhenStringIsULong_ReturnAsULong()
         {
             //Arrange
-            var parsed = Fixture.Create<ulong>();
+            var parsed = Dummy.Create<ulong>();
             var value = parsed.ToString();
 
             //Act
@@ -65,7 +65,7 @@ public class ULongTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToULong();
@@ -78,7 +78,7 @@ public class ULongTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<ulong>()}.{Fixture.Create<ulong>()}";
+            var value = $"{Dummy.Create<ulong>()}.{Dummy.Create<ulong>()}";
 
             //Act
             var result = value.ToULong();
@@ -98,7 +98,7 @@ public class ULongTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<ulong>();
+            var defaultValue = Dummy.Create<ulong>();
 
             //Act
             var result = value.ToULongOrDefault(defaultValue);
@@ -111,9 +111,9 @@ public class ULongTest
         public void WhenStringIsPositiveULong_ReturnAsULong()
         {
             //Arrange
-            var parsed = Fixture.Create<ulong>();
+            var parsed = Dummy.Create<ulong>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<ulong>();
+            var defaultValue = Dummy.Create<ulong>();
 
             //Act
             var result = value.ToULongOrDefault(defaultValue);
@@ -127,7 +127,7 @@ public class ULongTest
         {
             //Arrange
             var value = "18446744073709551616";
-            var defaultValue = Fixture.Create<ulong>();
+            var defaultValue = Dummy.Create<ulong>();
 
             //Act
             var result = value.ToULongOrDefault(defaultValue);
@@ -141,7 +141,7 @@ public class ULongTest
         {
             //Arrange
             var value = " -1";
-            var defaultValue = Fixture.Create<ulong>();
+            var defaultValue = Dummy.Create<ulong>();
 
             //Act
             var result = value.ToULongOrDefault(defaultValue);
@@ -154,8 +154,8 @@ public class ULongTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<ulong>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<ulong>();
 
             //Act
             var result = value.ToULongOrDefault(defaultValue);
@@ -168,8 +168,8 @@ public class ULongTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<ulong>()}.{Fixture.Create<ulong>()}";
-            var defaultValue = Fixture.Create<ulong>();
+            var value = $"{Dummy.Create<ulong>()}.{Dummy.Create<ulong>()}";
+            var defaultValue = Dummy.Create<ulong>();
 
             //Act
             var result = value.ToULongOrDefault(defaultValue);
@@ -201,7 +201,7 @@ public class ULongTest
         public void WhenConvertingToULongAndStringIsPositiveULong_ReturnAsULong()
         {
             //Arrange
-            var parsed = Fixture.Create<ulong>();
+            var parsed = Dummy.Create<ulong>();
             var value = parsed.ToString();
 
             //Act
@@ -221,7 +221,7 @@ public class ULongTest
             Action action = () => value.ToULongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
         }
 
         [TestMethod]
@@ -234,33 +234,33 @@ public class ULongTest
             Action action = () => value.ToULongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
         }
 
         [TestMethod]
         public void WhenConvertingToULongAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToULongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
         }
 
         [TestMethod]
         public void WhenConvertingToLongAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<ulong>()}.{Fixture.Create<ulong>()}";
+            var value = $"{Dummy.Create<ulong>()}.{Dummy.Create<ulong>()}";
 
             //Act
             Action action = () => value.ToULongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
         }
     }
 }

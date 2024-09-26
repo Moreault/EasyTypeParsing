@@ -25,7 +25,7 @@ public class GuidTest
         public void WhenValueIsGuid_ReturnAsGuid()
         {
             //Arrange
-            var parsed = Fixture.Create<Guid>();
+            var parsed = Dummy.Create<Guid>();
             var value = parsed.ToString();
 
             //Act
@@ -59,7 +59,7 @@ public class GuidTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<Guid>();
+            var defaultValue = Dummy.Create<Guid>();
 
             //Act
             var result = value.ToGuidOrDefault(defaultValue);
@@ -72,9 +72,9 @@ public class GuidTest
         public void WhenValueIsGuid_ReturnAsGuid()
         {
             //Arrange
-            var parsed = Fixture.Create<Guid>();
+            var parsed = Dummy.Create<Guid>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<Guid>();
+            var defaultValue = Dummy.Create<Guid>();
 
             //Act
             var result = value.ToGuidOrDefault(defaultValue);
@@ -88,7 +88,7 @@ public class GuidTest
         {
             //Arrange
             var value = "this is not a guid";
-            var defaultValue = Fixture.Create<Guid>();
+            var defaultValue = Dummy.Create<Guid>();
 
             //Act
             var result = value.ToGuidOrDefault(defaultValue);
@@ -120,7 +120,7 @@ public class GuidTest
         public void WhenValueIsGuid_ReturnAsGuid()
         {
             //Arrange
-            var parsed = Fixture.Create<Guid>();
+            var parsed = Dummy.Create<Guid>();
             var value = parsed.ToString();
 
             //Act
@@ -140,7 +140,7 @@ public class GuidTest
             var action = () => value.ToGuidOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<Guid>>().WithMessage($"Can't parse string to {nameof(Guid)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<Guid>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Guid)));
         }
     }
 }

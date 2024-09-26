@@ -37,7 +37,7 @@ public class CharTest
         public void WhenValueIsNotChar_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToChar();
@@ -50,7 +50,7 @@ public class CharTest
         public void WhenValueIsSingleChar_ReturnAsChar()
         {
             //Arrange
-            var parsed = Fixture.Create<char>();
+            var parsed = Dummy.Create<char>();
             var value = parsed.ToString();
 
             //Act
@@ -70,7 +70,7 @@ public class CharTest
         public void WhenValueIsNullOrEmpty_ReturnFailure(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<char>();
+            var defaultValue = Dummy.Create<char>();
 
             //Act
             var result = value.ToCharOrDefault(defaultValue);
@@ -84,7 +84,7 @@ public class CharTest
         {
             //Arrange
             var value = " ";
-            var defaultValue = Fixture.Create<char>();
+            var defaultValue = Dummy.Create<char>();
 
             //Act
             var result = value.ToCharOrDefault(defaultValue);
@@ -97,8 +97,8 @@ public class CharTest
         public void WhenValueIsNotChar_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<char>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<char>();
 
             //Act
             var result = value.ToCharOrDefault(defaultValue);
@@ -111,9 +111,9 @@ public class CharTest
         public void WhenValueIsSingleChar_ReturnAsChar()
         {
             //Arrange
-            var parsed = Fixture.Create<char>();
+            var parsed = Dummy.Create<char>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<char>();
+            var defaultValue = Dummy.Create<char>();
 
             //Act
             var result = value.ToCharOrDefault(defaultValue);
@@ -157,20 +157,20 @@ public class CharTest
         public void WhenValueIsNotChar_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var action = () => value.ToCharOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<char>>().WithMessage($"Can't parse string to {nameof(Char)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<char>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Char)));
         }
 
         [TestMethod]
         public void WhenValueIsSingleChar_ReturnAsChar()
         {
             //Arrange
-            var parsed = Fixture.Create<char>();
+            var parsed = Dummy.Create<char>();
             var value = parsed.ToString();
 
             //Act

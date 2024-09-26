@@ -25,7 +25,7 @@ public class ShortTest
         public void WhenStringIsNegativeShort_ReturnAsShort()
         {
             //Arrange
-            var parsed = (short)-Fixture.Create<short>();
+            var parsed = (short)-Dummy.Create<short>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class ShortTest
         public void WhenStringIsPositiveShort_ReturnAsShort()
         {
             //Arrange
-            var parsed = Fixture.Create<short>();
+            var parsed = Dummy.Create<short>();
             var value = parsed.ToString();
 
             //Act
@@ -79,7 +79,7 @@ public class ShortTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToShort();
@@ -92,7 +92,7 @@ public class ShortTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<short>()}.{Fixture.Create<short>()}";
+            var value = $"{Dummy.Create<short>()}.{Dummy.Create<short>()}";
 
             //Act
             var result = value.ToShort();
@@ -112,7 +112,7 @@ public class ShortTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<short>();
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -125,9 +125,9 @@ public class ShortTest
         public void WhenStringIsNegativeShort_ReturnAsShort()
         {
             //Arrange
-            var parsed = (short)-Fixture.Create<short>();
+            var parsed = (short)-Dummy.Create<short>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<short>();
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -140,9 +140,9 @@ public class ShortTest
         public void WhenStringIsPositiveShort_ReturnAsShort()
         {
             //Arrange
-            var parsed = Fixture.Create<short>();
+            var parsed = Dummy.Create<short>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<short>();
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -156,7 +156,7 @@ public class ShortTest
         {
             //Arrange
             var value = "32768";
-            var defaultValue = Fixture.Create<short>();
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -170,7 +170,7 @@ public class ShortTest
         {
             //Arrange
             var value = " -32769";
-            var defaultValue = Fixture.Create<short>();
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -183,8 +183,8 @@ public class ShortTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<short>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -197,8 +197,8 @@ public class ShortTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<short>()}.{Fixture.Create<short>()}";
-            var defaultValue = Fixture.Create<short>();
+            var value = $"{Dummy.Create<short>()}.{Dummy.Create<short>()}";
+            var defaultValue = Dummy.Create<short>();
 
             //Act
             var result = value.ToShortOrDefault(defaultValue);
@@ -230,7 +230,7 @@ public class ShortTest
         public void WhenConvertingToShortAndStringIsNegativeShort_ReturnAsShort()
         {
             //Arrange
-            var parsed = (short)-Fixture.Create<short>();
+            var parsed = (short)-Dummy.Create<short>();
             var value = parsed.ToString();
 
             //Act
@@ -244,7 +244,7 @@ public class ShortTest
         public void WhenConvertingToShortAndStringIsPositiveShort_ReturnAsShort()
         {
             //Arrange
-            var parsed = Fixture.Create<short>();
+            var parsed = Dummy.Create<short>();
             var value = parsed.ToString();
 
             //Act
@@ -264,7 +264,7 @@ public class ShortTest
             Action action = () => value.ToShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
         }
 
         [TestMethod]
@@ -277,33 +277,33 @@ public class ShortTest
             Action action = () => value.ToShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
         }
 
         [TestMethod]
         public void WhenConvertingToShortAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
         }
 
         [TestMethod]
         public void WhenConvertingToShortAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<short>()}.{Fixture.Create<short>()}";
+            var value = $"{Dummy.Create<short>()}.{Dummy.Create<short>()}";
 
             //Act
             Action action = () => value.ToShortOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
         }
     }
 }

@@ -25,7 +25,7 @@ public class LongTest
         public void WhenStringIsNegativeLong_ReturnAsLong()
         {
             //Arrange
-            var parsed = -Fixture.Create<long>();
+            var parsed = -Dummy.Create<long>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class LongTest
         public void WhenStringIsPositiveLong_ReturnAsLong()
         {
             //Arrange
-            var parsed = Fixture.Create<long>();
+            var parsed = Dummy.Create<long>();
             var value = parsed.ToString();
 
             //Act
@@ -79,7 +79,7 @@ public class LongTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToLong();
@@ -92,7 +92,7 @@ public class LongTest
         public void WhenStringHasFloatingPoint_ReturnFailure()
         {
             //Arrange
-            var value = $"{Fixture.Create<long>()}.{Fixture.Create<long>()}";
+            var value = $"{Dummy.Create<long>()}.{Dummy.Create<long>()}";
 
             //Act
             var result = value.ToLong();
@@ -112,7 +112,7 @@ public class LongTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<long>();
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -125,9 +125,9 @@ public class LongTest
         public void WhenStringIsNegativeLong_ReturnAsLong()
         {
             //Arrange
-            var parsed = -Fixture.Create<long>();
+            var parsed = -Dummy.Create<long>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<long>();
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -140,9 +140,9 @@ public class LongTest
         public void WhenStringIsPositiveLong_ReturnAsLong()
         {
             //Arrange
-            var parsed = Fixture.Create<long>();
+            var parsed = Dummy.Create<long>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<long>();
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -156,7 +156,7 @@ public class LongTest
         {
             //Arrange
             var value = "9223372036854775808";
-            var defaultValue = Fixture.Create<long>();
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -170,7 +170,7 @@ public class LongTest
         {
             //Arrange
             var value = " -9223372036854775809";
-            var defaultValue = Fixture.Create<long>();
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -183,8 +183,8 @@ public class LongTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<long>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -197,8 +197,8 @@ public class LongTest
         public void WhenStringHasFloatingPoint_ReturnDefaultValue()
         {
             //Arrange
-            var value = $"{Fixture.Create<long>()}.{Fixture.Create<long>()}";
-            var defaultValue = Fixture.Create<long>();
+            var value = $"{Dummy.Create<long>()}.{Dummy.Create<long>()}";
+            var defaultValue = Dummy.Create<long>();
 
             //Act
             var result = value.ToLongOrDefault(defaultValue);
@@ -230,7 +230,7 @@ public class LongTest
         public void WhenConvertingToLongAndStringIsNegativeLong_ReturnAsLong()
         {
             //Arrange
-            var parsed = -Fixture.Create<long>();
+            var parsed = -Dummy.Create<long>();
             var value = parsed.ToString();
 
             //Act
@@ -244,7 +244,7 @@ public class LongTest
         public void WhenConvertingToLongAndStringIsPositiveLong_ReturnAsLong()
         {
             //Arrange
-            var parsed = Fixture.Create<long>();
+            var parsed = Dummy.Create<long>();
             var value = parsed.ToString();
 
             //Act
@@ -264,7 +264,7 @@ public class LongTest
             Action action = () => value.ToLongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<long>>().WithMessage($"Can't parse string to {nameof(Int64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<long>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int64)));
         }
 
         [TestMethod]
@@ -277,33 +277,33 @@ public class LongTest
             Action action = () => value.ToLongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<long>>().WithMessage($"Can't parse string to {nameof(Int64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<long>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int64)));
         }
 
         [TestMethod]
         public void WhenConvertingToLongAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToLongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<long>>().WithMessage($"Can't parse string to {nameof(Int64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<long>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int64)));
         }
 
         [TestMethod]
         public void WhenConvertingToIntAndStringHasFloatingPoint_Throw()
         {
             //Arrange
-            var value = $"{Fixture.Create<long>()}.{Fixture.Create<long>()}";
+            var value = $"{Dummy.Create<long>()}.{Dummy.Create<long>()}";
 
             //Act
             Action action = () => value.ToLongOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<long>>().WithMessage($"Can't parse string to {nameof(Int64)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<long>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int64)));
         }
     }
 }

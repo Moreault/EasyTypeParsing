@@ -7,9 +7,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToIntAndValueIsNegativeInt_ReturnAsInt()
     {
         //Arrange
-        var parsed = -Fixture.Create<int>();
+        var parsed = -Dummy.Create<int>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<int>();
+        var defaultValue = Dummy.Create<int>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -22,9 +22,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToIntAndValueIsPositiveInt_ReturnAsInt()
     {
         //Arrange
-        var parsed = Fixture.Create<int>();
+        var parsed = Dummy.Create<int>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<int>();
+        var defaultValue = Dummy.Create<int>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -38,7 +38,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = ((long)int.MaxValue + 1).ToString();
-        var defaultValue = Fixture.Create<int>();
+        var defaultValue = Dummy.Create<int>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -52,7 +52,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = ((long)int.MinValue - 1).ToString();
-        var defaultValue = Fixture.Create<int>();
+        var defaultValue = Dummy.Create<int>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -65,8 +65,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToIntAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<int>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<int>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -79,8 +79,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToIntAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
-        var defaultValue = Fixture.Create<int>();
+        var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
+        var defaultValue = Dummy.Create<int>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -93,9 +93,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToLongAndValueIsNegativeLong_ReturnAsLong()
     {
         //Arrange
-        var parsed = -Fixture.Create<long>();
+        var parsed = -Dummy.Create<long>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<long>();
+        var defaultValue = Dummy.Create<long>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -108,9 +108,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToLongAndValueIsPositiveLong_ReturnAsLong()
     {
         //Arrange
-        var parsed = Fixture.Create<long>();
+        var parsed = Dummy.Create<long>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<long>();
+        var defaultValue = Dummy.Create<long>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -124,7 +124,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "9223372036854775808";
-        var defaultValue = Fixture.Create<long>();
+        var defaultValue = Dummy.Create<long>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -138,7 +138,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " -9223372036854775809";
-        var defaultValue = Fixture.Create<long>();
+        var defaultValue = Dummy.Create<long>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -151,8 +151,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToLongAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<long>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<long>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -165,8 +165,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToLongAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<long>()}.{Fixture.Create<long>()}";
-        var defaultValue = Fixture.Create<long>();
+        var value = $"{Dummy.Create<long>()}.{Dummy.Create<long>()}";
+        var defaultValue = Dummy.Create<long>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -179,9 +179,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToFloatAndValueIsNegativeFloat_ReturnAsFloat()
     {
         //Arrange
-        var parsed = -Fixture.Create<float>();
+        var parsed = -Dummy.Create<float>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<float>();
+        var defaultValue = Dummy.Create<float>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -194,9 +194,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToFloatAndValueIsPositiveFloat_ReturnAsFloat()
     {
         //Arrange
-        var parsed = Fixture.Create<float>();
+        var parsed = Dummy.Create<float>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<float>();
+        var defaultValue = Dummy.Create<float>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -210,7 +210,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "92233736799999999999999999999999999999999999999999999999999999999976457645674575474576547645764576657620312342141341341243124312436854775809.982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-        var defaultValue = Fixture.Create<float>();
+        var defaultValue = Dummy.Create<float>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -224,7 +224,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "-92233736799999999999999999999999999999999999999999999999999999999976457645674575474576547645764576657620312342141341341243124312436854775809.982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-        var defaultValue = Fixture.Create<float>();
+        var defaultValue = Dummy.Create<float>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -237,8 +237,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToFloatAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<float>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<float>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -251,9 +251,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToFloatAndValueHasFloatingPoint_ReturnParsed()
     {
         //Arrange
-        var parsed = Fixture.Create<float>() + Fixture.Create<float>() / 100;
+        var parsed = Dummy.Create<float>() + Dummy.Create<float>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<float>();
+        var defaultValue = Dummy.Create<float>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -266,9 +266,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDoubleAndValueIsNegativeDouble_ReturnAsDouble()
     {
         //Arrange
-        var parsed = -Fixture.Create<double>();
+        var parsed = -Dummy.Create<double>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<double>();
+        var defaultValue = Dummy.Create<double>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -281,9 +281,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDoubleAndValueIsPositiveDouble_ReturnAsDouble()
     {
         //Arrange
-        var parsed = Fixture.Create<double>();
+        var parsed = Dummy.Create<double>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<double>();
+        var defaultValue = Dummy.Create<double>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -297,7 +297,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-        var defaultValue = Fixture.Create<double>();
+        var defaultValue = Dummy.Create<double>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -311,7 +311,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-        var defaultValue = Fixture.Create<double>();
+        var defaultValue = Dummy.Create<double>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -324,8 +324,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDoubleAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<double>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<double>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -338,9 +338,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDoubleAndValueHasFloatingPoint_ReturnParsed()
     {
         //Arrange
-        var parsed = Fixture.Create<double>() + Fixture.Create<double>() / 100;
+        var parsed = Dummy.Create<double>() + Dummy.Create<double>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<double>();
+        var defaultValue = Dummy.Create<double>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -353,9 +353,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDecimalAndValueIsNegativeDecimal_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = -Fixture.Create<decimal>();
+        var parsed = -Dummy.Create<decimal>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<decimal>();
+        var defaultValue = Dummy.Create<decimal>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -368,9 +368,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDecimalAndValueIsPositiveDecimal_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = Fixture.Create<decimal>();
+        var parsed = Dummy.Create<decimal>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<decimal>();
+        var defaultValue = Dummy.Create<decimal>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -384,7 +384,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-        var defaultValue = Fixture.Create<decimal>();
+        var defaultValue = Dummy.Create<decimal>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -398,7 +398,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-        var defaultValue = Fixture.Create<decimal>();
+        var defaultValue = Dummy.Create<decimal>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -411,8 +411,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDecimalAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<decimal>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<decimal>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -425,9 +425,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDecimalAndValueHasFloatingPoint_ReturnParsed()
     {
         //Arrange
-        var parsed = Fixture.Create<decimal>() + Fixture.Create<decimal>() / 100;
+        var parsed = Dummy.Create<decimal>() + Dummy.Create<decimal>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<decimal>();
+        var defaultValue = Dummy.Create<decimal>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -440,9 +440,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToByteAndValueIsPositiveByte_ReturnAsByte()
     {
         //Arrange
-        var parsed = Fixture.Create<byte>();
+        var parsed = Dummy.Create<byte>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<byte>();
+        var defaultValue = Dummy.Create<byte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -456,7 +456,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = ((long)byte.MaxValue + 1).ToString();
-        var defaultValue = Fixture.Create<byte>();
+        var defaultValue = Dummy.Create<byte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -470,7 +470,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = ((long)byte.MinValue - 1).ToString();
-        var defaultValue = Fixture.Create<byte>();
+        var defaultValue = Dummy.Create<byte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -483,8 +483,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToByteAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<byte>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<byte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -497,8 +497,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToByteAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<byte>()}.{Fixture.Create<byte>()}";
-        var defaultValue = Fixture.Create<byte>();
+        var value = $"{Dummy.Create<byte>()}.{Dummy.Create<byte>()}";
+        var defaultValue = Dummy.Create<byte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -511,9 +511,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToSByteAndValueIsNegativeSByte_ReturnAsSByte()
     {
         //Arrange
-        var parsed = (sbyte)-Fixture.Create<sbyte>();
+        var parsed = (sbyte)-Dummy.Create<sbyte>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<sbyte>();
+        var defaultValue = Dummy.Create<sbyte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -526,9 +526,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToSByteAndValueIsPositiveSByte_ReturnAsSByte()
     {
         //Arrange
-        var parsed = Fixture.Create<sbyte>();
+        var parsed = Dummy.Create<sbyte>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<sbyte>();
+        var defaultValue = Dummy.Create<sbyte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -542,7 +542,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "128";
-        var defaultValue = Fixture.Create<sbyte>();
+        var defaultValue = Dummy.Create<sbyte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -556,7 +556,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " -129";
-        var defaultValue = Fixture.Create<sbyte>();
+        var defaultValue = Dummy.Create<sbyte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -569,8 +569,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToSByteAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<sbyte>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<sbyte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -583,8 +583,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToSByteAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<sbyte>()}.{Fixture.Create<sbyte>()}";
-        var defaultValue = Fixture.Create<sbyte>();
+        var value = $"{Dummy.Create<sbyte>()}.{Dummy.Create<sbyte>()}";
+        var defaultValue = Dummy.Create<sbyte>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -597,9 +597,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToShortAndValueIsNegativeShort_ReturnAsShort()
     {
         //Arrange
-        var parsed = (short)-Fixture.Create<short>();
+        var parsed = (short)-Dummy.Create<short>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<short>();
+        var defaultValue = Dummy.Create<short>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -612,9 +612,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToShortAndValueIsPositiveShort_ReturnAsShort()
     {
         //Arrange
-        var parsed = Fixture.Create<short>();
+        var parsed = Dummy.Create<short>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<short>();
+        var defaultValue = Dummy.Create<short>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -628,7 +628,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "32768";
-        var defaultValue = Fixture.Create<short>();
+        var defaultValue = Dummy.Create<short>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -642,7 +642,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " -32769";
-        var defaultValue = Fixture.Create<short>();
+        var defaultValue = Dummy.Create<short>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -655,8 +655,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToShortAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<short>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<short>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -669,8 +669,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToShortAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<short>()}.{Fixture.Create<short>()}";
-        var defaultValue = Fixture.Create<short>();
+        var value = $"{Dummy.Create<short>()}.{Dummy.Create<short>()}";
+        var defaultValue = Dummy.Create<short>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -684,7 +684,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " ";
-        var defaultValue = Fixture.Create<char>();
+        var defaultValue = Dummy.Create<char>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -697,8 +697,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToCharAndValueIsNotChar_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<char>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<char>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -711,9 +711,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToCharAndValueIsSingleChar_ReturnAsChar()
     {
         //Arrange
-        var parsed = Fixture.Create<char>();
+        var parsed = Dummy.Create<char>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<char>();
+        var defaultValue = Dummy.Create<char>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -726,9 +726,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUIntAndValueIsPositiveUInt_ReturnAsUInt()
     {
         //Arrange
-        var parsed = Fixture.Create<uint>();
+        var parsed = Dummy.Create<uint>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<uint>();
+        var defaultValue = Dummy.Create<uint>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -742,7 +742,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "4294967296";
-        var defaultValue = Fixture.Create<uint>();
+        var defaultValue = Dummy.Create<uint>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -756,7 +756,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " -1";
-        var defaultValue = Fixture.Create<uint>();
+        var defaultValue = Dummy.Create<uint>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -769,8 +769,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUIntAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<uint>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<uint>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -783,8 +783,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUIntAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<uint>()}.{Fixture.Create<uint>()}";
-        var defaultValue = Fixture.Create<uint>();
+        var value = $"{Dummy.Create<uint>()}.{Dummy.Create<uint>()}";
+        var defaultValue = Dummy.Create<uint>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -797,9 +797,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToULongAndValueIsPositiveULong_ReturnAsULong()
     {
         //Arrange
-        var parsed = Fixture.Create<ulong>();
+        var parsed = Dummy.Create<ulong>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<ulong>();
+        var defaultValue = Dummy.Create<ulong>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -813,7 +813,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "18446744073709551616";
-        var defaultValue = Fixture.Create<ulong>();
+        var defaultValue = Dummy.Create<ulong>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -827,7 +827,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " -1";
-        var defaultValue = Fixture.Create<ulong>();
+        var defaultValue = Dummy.Create<ulong>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -840,8 +840,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToULongAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<ulong>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<ulong>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -854,8 +854,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToULongAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<ulong>()}.{Fixture.Create<ulong>()}";
-        var defaultValue = Fixture.Create<ulong>();
+        var value = $"{Dummy.Create<ulong>()}.{Dummy.Create<ulong>()}";
+        var defaultValue = Dummy.Create<ulong>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -868,9 +868,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUShortAndValueIsPositiveUShort_ReturnAsUShort()
     {
         //Arrange
-        var parsed = Fixture.Create<ushort>();
+        var parsed = Dummy.Create<ushort>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<ushort>();
+        var defaultValue = Dummy.Create<ushort>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -884,7 +884,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "18446744073709551616";
-        var defaultValue = Fixture.Create<ushort>();
+        var defaultValue = Dummy.Create<ushort>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -898,7 +898,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = " -1";
-        var defaultValue = Fixture.Create<ushort>();
+        var defaultValue = Dummy.Create<ushort>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -911,8 +911,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUShortAndValueIsNotNumeric_ReturnDefaultValue()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<ushort>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<ushort>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -925,8 +925,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUShortAndValueHasFloatingPoint_ReturnDefaultValue()
     {
         //Arrange
-        var value = $"{Fixture.Create<ushort>()}.{Fixture.Create<ushort>()}";
-        var defaultValue = Fixture.Create<ushort>();
+        var value = $"{Dummy.Create<ushort>()}.{Dummy.Create<ushort>()}";
+        var defaultValue = Dummy.Create<ushort>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -935,18 +935,12 @@ public class ParseOrDefault : Tester
         result.Should().Be(defaultValue);
     }
 
-
-
-
-
-
-
     [TestMethod]
     public void WhenConvertingToBoolAndValueIsTrue_ReturnTrue()
     {
         //Arrange
         var value = true.ToString();
-        var defaultValue = Fixture.Create<bool>();
+        var defaultValue = Dummy.Create<bool>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -960,7 +954,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "TrUe";
-        var defaultValue = Fixture.Create<bool>();
+        var defaultValue = Dummy.Create<bool>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -974,7 +968,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = false.ToString();
-        var defaultValue = Fixture.Create<bool>();
+        var defaultValue = Dummy.Create<bool>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -988,7 +982,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "FaLsE";
-        var defaultValue = Fixture.Create<bool>();
+        var defaultValue = Dummy.Create<bool>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1001,8 +995,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToBoolAndValueIsNotTrueOrFalse_ReturnDefault()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<bool>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<bool>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1015,9 +1009,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeAndValueIsValidDateTime_ReturnAsDateTime()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<DateTime>();
+        var defaultValue = Dummy.Create<DateTime>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1032,7 +1026,7 @@ public class ParseOrDefault : Tester
         //Arrange
         var parsed = new DateTime(2022, 3, 7, 14, 43, 26, 535);
         const string value = "03/07/2022 14:43:26.535";
-        var defaultValue = Fixture.Create<DateTime>();
+        var defaultValue = Dummy.Create<DateTime>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1045,8 +1039,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeAndValueIsNotDateTime_ReturnDefault()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<DateTime>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<DateTime>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1059,9 +1053,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeAndValueIsNotUsingSameCultureInfo_ReturnDefault()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
-        var defaultValue = Fixture.Create<DateTime>();
+        var defaultValue = Dummy.Create<DateTime>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue, new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
@@ -1074,9 +1068,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeAndValueIsUsingSameCultureInfo_ReturnAsDateTime()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
-        var defaultValue = Fixture.Create<DateTime>();
+        var defaultValue = Dummy.Create<DateTime>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue, new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
@@ -1089,9 +1083,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
-        var defaultValue = Fixture.Create<DateTimeOffset>();
+        var defaultValue = Dummy.Create<DateTimeOffset>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1104,8 +1098,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsNotDateTimeOffset_ReturnDefault()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<DateTimeOffset>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<DateTimeOffset>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1118,9 +1112,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsNotUsingSameCultureInfo_ReturnDefault()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
-        var defaultValue = Fixture.Create<DateTimeOffset>();
+        var defaultValue = Dummy.Create<DateTimeOffset>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue, new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
@@ -1133,9 +1127,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsUsingSameCultureInfo_ReturnAsDateTimeOffset()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
-        var defaultValue = Fixture.Create<DateTimeOffset>();
+        var defaultValue = Dummy.Create<DateTimeOffset>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue, new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
@@ -1148,9 +1142,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToVersionAndValueIsCorrectlyFormattedVersion_ReturnAsVersion()
     {
         //Arrange
-        var parsed = Fixture.Create<Version>();
+        var parsed = Dummy.Create<Version>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<Version>();
+        var defaultValue = Dummy.Create<Version>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1163,8 +1157,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToVersionAndValueIsNotVersion_ReturnDefault()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<Version>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<Version>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1177,9 +1171,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToTimeSpanAndValueIsValidTimeSpan_ReturnAsTimeSpan()
     {
         //Arrange
-        var parsed = Fixture.Create<TimeSpan>();
+        var parsed = Dummy.Create<TimeSpan>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<TimeSpan>();
+        var defaultValue = Dummy.Create<TimeSpan>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1192,8 +1186,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToTimeSpanAndValueIsNotTimeSpan_ReturnDefault()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<TimeSpan>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<TimeSpan>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1206,9 +1200,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToGuidAndValueIsValidGuid_ReturnAsGuid()
     {
         //Arrange
-        var parsed = Fixture.Create<Guid>();
+        var parsed = Dummy.Create<Guid>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<Guid>();
+        var defaultValue = Dummy.Create<Guid>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1222,7 +1216,7 @@ public class ParseOrDefault : Tester
     {
         //Arrange
         var value = "this is not a guid";
-        var defaultValue = Fixture.Create<Guid>();
+        var defaultValue = Dummy.Create<Guid>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1235,9 +1229,9 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToBigIntegerAndValueIsNumeric_ReturnAsBigInteger()
     {
         //Arrange
-        var parsed = Fixture.Create<BigInteger>();
+        var parsed = Dummy.Create<BigInteger>();
         var value = parsed.ToString();
-        var defaultValue = Fixture.Create<BigInteger>();
+        var defaultValue = Dummy.Create<BigInteger>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1250,8 +1244,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToBigIntegerAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<BigInteger>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<BigInteger>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);
@@ -1264,8 +1258,8 @@ public class ParseOrDefault : Tester
     public void WhenConvertingToUnsupportedType_returnDefault()
     {
         //Arrange
-        var value = Fixture.Create<string>();
-        var defaultValue = Fixture.Create<DummyUnsupportedType>();
+        var value = Dummy.Create<string>();
+        var defaultValue = Dummy.Create<DummyUnsupportedType>();
 
         //Act
         var result = value.ParseOrDefault(defaultValue);

@@ -25,7 +25,7 @@ public class DoubleTest
         public void WhenStringIsNegativeDouble_ReturnAsDouble()
         {
             //Arrange
-            var parsed = -Fixture.Create<double>();
+            var parsed = -Dummy.Create<double>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -39,7 +39,7 @@ public class DoubleTest
         public void WhenStringIsPositiveDouble_ReturnAsDouble()
         {
             //Arrange
-            var parsed = Fixture.Create<double>();
+            var parsed = Dummy.Create<double>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -79,7 +79,7 @@ public class DoubleTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToDouble();
@@ -92,7 +92,7 @@ public class DoubleTest
         public void WhenStringHasFloatingPoint_ReturnAsDouble()
         {
             //Arrange
-            var parsed = Fixture.Create<double>() + Fixture.Create<double>() / 100;
+            var parsed = Dummy.Create<double>() + Dummy.Create<double>() / 100;
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -113,7 +113,7 @@ public class DoubleTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<double>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -126,9 +126,9 @@ public class DoubleTest
         public void WhenStringIsNegativeDouble_ReturnAsDouble()
         {
             //Arrange
-            var parsed = -Fixture.Create<double>();
+            var parsed = -Dummy.Create<double>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<double>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -141,9 +141,9 @@ public class DoubleTest
         public void WhenStringIsPositiveDouble_ReturnAsDouble()
         {
             //Arrange
-            var parsed = Fixture.Create<double>();
+            var parsed = Dummy.Create<double>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<double>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -157,7 +157,7 @@ public class DoubleTest
         {
             //Arrange
             var value = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-            var defaultValue = Fixture.Create<double>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -171,7 +171,7 @@ public class DoubleTest
         {
             //Arrange
             var value = "-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999223373679999999999999999999999999999999999999999999999999999999997645764567457547457699999999999999999999999999999999999999999999999999547645764576657620312342141341341243124312436854775809.999999999999999999999999999999999999999999999999999999982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-            var defaultValue = Fixture.Create<double>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -184,8 +184,8 @@ public class DoubleTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<double>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -198,9 +198,9 @@ public class DoubleTest
         public void WhenStringHasFloatingPoint_ReturnParsed()
         {
             //Arrange
-            var parsed = Fixture.Create<double>() + Fixture.Create<double>() / 100;
+            var parsed = Dummy.Create<double>() + Dummy.Create<double>() / 100;
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<double>();
+            var defaultValue = Dummy.Create<double>();
 
             //Act
             var result = value.ToDoubleOrDefault(defaultValue);
@@ -232,7 +232,7 @@ public class DoubleTest
         public void WhenConvertingToDoubleAndStringIsNegativeDouble_ReturnAsDouble()
         {
             //Arrange
-            var parsed = -Fixture.Create<double>();
+            var parsed = -Dummy.Create<double>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -246,7 +246,7 @@ public class DoubleTest
         public void WhenConvertingToDoubleAndStringIsPositiveDouble_ReturnAsDouble()
         {
             //Arrange
-            var parsed = Fixture.Create<double>();
+            var parsed = Dummy.Create<double>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -286,20 +286,20 @@ public class DoubleTest
         public void WhenConvertingToDoubleAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToDoubleOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<double>>().WithMessage($"Can't parse string to {nameof(Double)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<double>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Double)));
         }
 
         [TestMethod]
         public void WhenConvertingToIntAndStringHasFloatingPoint_ReturnParsed()
         {
             //Arrange
-            var parsed = Fixture.Create<double>() + Fixture.Create<double>() / 100;
+            var parsed = Dummy.Create<double>() + Dummy.Create<double>() / 100;
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act

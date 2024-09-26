@@ -1,6 +1,4 @@
-﻿using EasyTypeParsing.Tests.Utilities;
-
-namespace EasyTypeParsing.Tests;
+﻿namespace EasyTypeParsing.Tests;
 
 [TestClass]
 public class DateTimeOffsetTest
@@ -27,7 +25,7 @@ public class DateTimeOffsetTest
         public void WhenValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -41,7 +39,7 @@ public class DateTimeOffsetTest
         public void WhenValueIsNotDateTimeOffset_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToDateTimeOffset();
@@ -54,7 +52,7 @@ public class DateTimeOffsetTest
         public void WhenValueIsNotUsingSameCultureInfo_ReturnFailure()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
             //Act
@@ -68,7 +66,7 @@ public class DateTimeOffsetTest
         public void WhenValueIsUsingSameCultureInfo_ReturnAsDateTimeOffset()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
             //Act
@@ -89,7 +87,7 @@ public class DateTimeOffsetTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<DateTimeOffset>();
+            var defaultValue = Dummy.Create<DateTimeOffset>();
 
             //Act
             var result = value.ToDateTimeOffsetOrDefault(defaultValue);
@@ -102,9 +100,9 @@ public class DateTimeOffsetTest
         public void WhenValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<DateTimeOffset>();
+            var defaultValue = Dummy.Create<DateTimeOffset>();
 
             //Act
             var result = value.ToDateTimeOffsetOrDefault(defaultValue);
@@ -117,8 +115,8 @@ public class DateTimeOffsetTest
         public void WhenValueIsNotDateTimeOffset_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<DateTimeOffset>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<DateTimeOffset>();
 
             //Act
             var result = value.ToDateTimeOffsetOrDefault(defaultValue);
@@ -131,9 +129,9 @@ public class DateTimeOffsetTest
         public void WhenValueIsNotUsingSameCultureInfo_ReturnDefault()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
-            var defaultValue = Fixture.Create<DateTimeOffset>();
+            var defaultValue = Dummy.Create<DateTimeOffset>();
 
             //Act
             var result = value.ToDateTimeOffsetOrDefault(defaultValue, new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
@@ -146,9 +144,9 @@ public class DateTimeOffsetTest
         public void WhenValueIsUsingSameCultureInfo_ReturnAsDateTimeOffset()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
-            var defaultValue = Fixture.Create<DateTimeOffset>();
+            var defaultValue = Dummy.Create<DateTimeOffset>();
 
             //Act
             var result = value.ToDateTimeOffsetOrDefault(defaultValue, new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("fr-ca") });
@@ -180,7 +178,7 @@ public class DateTimeOffsetTest
         public void WhenValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -194,34 +192,34 @@ public class DateTimeOffsetTest
         public void WhenValueIsNotDateTimeOffset_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToDateTimeOffsetOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage($"Can't parse string to {nameof(DateTimeOffset)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(DateTimeOffset)));
         }
 
         [TestMethod]
         public void WhenValueIsNotUsingSameCultureInfo_Throw()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
             //Act
             Action action = () => value.ToDateTimeOffsetOrThrow(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
             //Assert
-            action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage($"Can't parse string to {nameof(DateTimeOffset)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(DateTimeOffset)));
         }
 
         [TestMethod]
         public void WhenValueIsUsingSameCultureInfo_ReturnAsDateTimeOffset()
         {
             //Arrange
-            var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+            var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
             var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
             //Act

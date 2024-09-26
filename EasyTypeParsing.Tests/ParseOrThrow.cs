@@ -22,7 +22,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToIntAndStringIsNegativeInt_ReturnAsInt()
     {
         //Arrange
-        var parsed = -Fixture.Create<int>();
+        var parsed = -Dummy.Create<int>();
         var value = parsed.ToString();
 
         //Act
@@ -36,7 +36,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToIntAndStringIsPositiveInt_ReturnAsInt()
     {
         //Arrange
-        var parsed = Fixture.Create<int>();
+        var parsed = Dummy.Create<int>();
         var value = parsed.ToString();
 
         //Act
@@ -56,7 +56,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<int>();
 
         //Assert
-        action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
     }
 
     [TestMethod]
@@ -69,40 +69,40 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<int>();
 
         //Assert
-        action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
     }
 
     [TestMethod]
     public void WhenConvertingToIntAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<int>();
 
         //Assert
-        action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
     }
 
     [TestMethod]
     public void WhenConvertingToIntAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+        var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<int>();
 
         //Assert
-        action.Should().Throw<StringParsingException<int>>().WithMessage($"Can't parse string to {nameof(Int32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<int>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int32)));
     }
 
     [TestMethod]
     public void WhenConvertingToLongAndStringIsNegativeLong_ReturnAsLong()
     {
         //Arrange
-        var parsed = -Fixture.Create<long>();
+        var parsed = -Dummy.Create<long>();
         var value = parsed.ToString();
 
         //Act
@@ -116,7 +116,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToLongAndStringIsPositiveLong_ReturnAsLong()
     {
         //Arrange
-        var parsed = Fixture.Create<long>();
+        var parsed = Dummy.Create<long>();
         var value = parsed.ToString();
 
         //Act
@@ -130,26 +130,26 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToLongAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<long>();
 
         //Assert
-        action.Should().Throw<StringParsingException<long>>().WithMessage($"Can't parse string to {nameof(Int64)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<long>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int64)));
     }
 
     [TestMethod]
     public void WhenConvertingToLongAndStringHasFloatingPoLong_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<long>()}.{Fixture.Create<long>()}";
+        var value = $"{Dummy.Create<long>()}.{Dummy.Create<long>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<long>();
 
         //Assert
-        action.Should().Throw<StringParsingException<long>>().WithMessage($"Can't parse string to {nameof(Int64)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<long>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int64)));
     }
 
 
@@ -157,7 +157,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToFloatAndStringIsNegativeFloat_ReturnAsFloat()
     {
         //Arrange
-        var parsed = -Fixture.Create<float>();
+        var parsed = -Dummy.Create<float>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -171,7 +171,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToFloatAndStringIsPositiveFloat_ReturnAsFloat()
     {
         //Arrange
-        var parsed = Fixture.Create<float>();
+        var parsed = Dummy.Create<float>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -211,20 +211,20 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToFloatAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<float>();
 
         //Assert
-        action.Should().Throw<StringParsingException<float>>().WithMessage($"Can't parse string to {nameof(Single)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<float>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Single)));
     }
 
     [TestMethod]
     public void WhenConvertingToFloatAndStringHasFloatingPoint_ReturnParsed()
     {
         //Arrange
-        var parsed = Fixture.Create<float>() + Fixture.Create<float>() / 100;
+        var parsed = Dummy.Create<float>() + Dummy.Create<float>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -238,7 +238,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToDoubleAndStringIsNegativeDouble_ReturnAsDouble()
     {
         //Arrange
-        var parsed = -Fixture.Create<double>();
+        var parsed = -Dummy.Create<double>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -252,7 +252,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToDoubleAndStringIsPositiveDouble_ReturnAsDouble()
     {
         //Arrange
-        var parsed = Fixture.Create<double>();
+        var parsed = Dummy.Create<double>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -292,20 +292,20 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToDoubleAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<double>();
 
         //Assert
-        action.Should().Throw<StringParsingException<double>>().WithMessage($"Can't parse string to {nameof(Double)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<double>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Double)));
     }
 
     [TestMethod]
     public void WhenConvertingToDoubleAndStringHasFloatingPoint_ReturnParsed()
     {
         //Arrange
-        var parsed = Fixture.Create<double>() + Fixture.Create<double>() / 100;
+        var parsed = Dummy.Create<double>() + Dummy.Create<double>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -319,7 +319,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToDecimalAndStringIsNegativeDecimal_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = -Fixture.Create<decimal>();
+        var parsed = -Dummy.Create<decimal>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -333,7 +333,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToDecimalAndStringIsPositiveDecimal_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = Fixture.Create<decimal>();
+        var parsed = Dummy.Create<decimal>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -353,7 +353,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<decimal>();
 
         //Assert
-        action.Should().Throw<StringParsingException<decimal>>().WithMessage($"Can't parse string to {nameof(Decimal)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<decimal>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Decimal)));
     }
 
     [TestMethod]
@@ -366,27 +366,27 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<decimal>();
 
         //Assert
-        action.Should().Throw<StringParsingException<decimal>>().WithMessage($"Can't parse string to {nameof(Decimal)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<decimal>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Decimal)));
     }
 
     [TestMethod]
     public void WhenConvertingToDecimalAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<decimal>();
 
         //Assert
-        action.Should().Throw<StringParsingException<decimal>>().WithMessage($"Can't parse string to {nameof(Decimal)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<decimal>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Decimal)));
     }
 
     [TestMethod]
     public void WhenConvertingToDecimalAndStringHasFloatingPoint_ReturnParsed()
     {
         //Arrange
-        var parsed = Fixture.Create<decimal>() + Fixture.Create<decimal>() / 100;
+        var parsed = Dummy.Create<decimal>() + Dummy.Create<decimal>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -400,7 +400,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToByteAndStringIsPositiveByte_ReturnAsByte()
     {
         //Arrange
-        var parsed = Fixture.Create<byte>();
+        var parsed = Dummy.Create<byte>();
         var value = parsed.ToString();
 
         //Act
@@ -420,7 +420,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<byte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
     }
 
     [TestMethod]
@@ -433,40 +433,40 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<byte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
     }
 
     [TestMethod]
     public void WhenConvertingToByteAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<byte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
     }
 
     [TestMethod]
     public void WhenConvertingToByteAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<byte>()}.{Fixture.Create<byte>()}";
+        var value = $"{Dummy.Create<byte>()}.{Dummy.Create<byte>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<byte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<byte>>().WithMessage($"Can't parse string to {nameof(Byte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<byte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Byte)));
     }
 
     [TestMethod]
     public void WhenConvertingToSByteAndStringIsNegativeSByte_ReturnAsSByte()
     {
         //Arrange
-        var parsed = (sbyte)-Fixture.Create<sbyte>();
+        var parsed = (sbyte)-Dummy.Create<sbyte>();
         var value = parsed.ToString();
 
         //Act
@@ -480,7 +480,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToSByteAndStringIsPositiveSByte_ReturnAsSByte()
     {
         //Arrange
-        var parsed = Fixture.Create<sbyte>();
+        var parsed = Dummy.Create<sbyte>();
         var value = parsed.ToString();
 
         //Act
@@ -500,7 +500,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<sbyte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
     }
 
     [TestMethod]
@@ -513,40 +513,40 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<sbyte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
     }
 
     [TestMethod]
     public void WhenConvertingToSByteAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<sbyte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
     }
 
     [TestMethod]
     public void WhenConvertingToSByteAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<sbyte>()}.{Fixture.Create<sbyte>()}";
+        var value = $"{Dummy.Create<sbyte>()}.{Dummy.Create<sbyte>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<sbyte>();
 
         //Assert
-        action.Should().Throw<StringParsingException<sbyte>>().WithMessage($"Can't parse string to {nameof(SByte)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<sbyte>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(SByte)));
     }
 
     [TestMethod]
     public void WhenConvertingToShortAndStringIsNegativeShort_ReturnAsShort()
     {
         //Arrange
-        var parsed = (short)-Fixture.Create<short>();
+        var parsed = (short)-Dummy.Create<short>();
         var value = parsed.ToString();
 
         //Act
@@ -560,7 +560,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToShortAndStringIsPositiveShort_ReturnAsShort()
     {
         //Arrange
-        var parsed = Fixture.Create<short>();
+        var parsed = Dummy.Create<short>();
         var value = parsed.ToString();
 
         //Act
@@ -580,7 +580,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<short>();
 
         //Assert
-        action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
     }
 
     [TestMethod]
@@ -593,33 +593,33 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<short>();
 
         //Assert
-        action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
     }
 
     [TestMethod]
     public void WhenConvertingToShortAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<short>();
 
         //Assert
-        action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
     }
 
     [TestMethod]
     public void WhenConvertingToShortAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<short>()}.{Fixture.Create<short>()}";
+        var value = $"{Dummy.Create<short>()}.{Dummy.Create<short>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<short>();
 
         //Assert
-        action.Should().Throw<StringParsingException<short>>().WithMessage($"Can't parse string to {nameof(Int16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<short>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Int16)));
     }
 
     [TestMethod]
@@ -639,20 +639,20 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotChar_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var action = () => value.ParseOrThrow<char>();
 
         //Assert
-        action.Should().Throw<StringParsingException<char>>().WithMessage($"Can't parse string to {nameof(Char)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<char>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Char)));
     }
 
     [TestMethod]
     public void WhenValueIsSingleChar_ReturnAsChar()
     {
         //Arrange
-        var parsed = Fixture.Create<char>();
+        var parsed = Dummy.Create<char>();
         var value = parsed.ToString();
 
         //Act
@@ -666,7 +666,7 @@ public class ParseOrThrow : Tester
     public void WhenConvertingToUIntAndStringIsPositiveUInt_ReturnAsUInt()
     {
         //Arrange
-        var parsed = Fixture.Create<uint>();
+        var parsed = Dummy.Create<uint>();
         var value = parsed.ToString();
 
         //Act
@@ -686,7 +686,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<uint>();
 
         //Assert
-        action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
     }
 
     [TestMethod]
@@ -699,40 +699,40 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<uint>();
 
         //Assert
-        action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
     }
 
     [TestMethod]
     public void WhenConvertingToUIntAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<uint>();
 
         //Assert
-        action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
     }
 
     [TestMethod]
     public void WhenConvertingToUIntAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<uint>()}.{Fixture.Create<uint>()}";
+        var value = $"{Dummy.Create<uint>()}.{Dummy.Create<uint>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<uint>();
 
         //Assert
-        action.Should().Throw<StringParsingException<uint>>().WithMessage($"Can't parse string to {nameof(UInt32)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<uint>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt32)));
     }
 
     [TestMethod]
     public void WhenConvertingToULongAndStringIsPositiveULong_ReturnAsULong()
     {
         //Arrange
-        var parsed = Fixture.Create<ulong>();
+        var parsed = Dummy.Create<ulong>();
         var value = parsed.ToString();
 
         //Act
@@ -752,7 +752,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<ulong>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
     }
 
     [TestMethod]
@@ -765,40 +765,40 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<ulong>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
     }
 
     [TestMethod]
     public void WhenConvertingToULongAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<ulong>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
     }
 
     [TestMethod]
     public void WhenConvertingToLongAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<ulong>()}.{Fixture.Create<ulong>()}";
+        var value = $"{Dummy.Create<ulong>()}.{Dummy.Create<ulong>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<ulong>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ulong>>().WithMessage($"Can't parse string to {nameof(UInt64)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ulong>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt64)));
     }
 
     [TestMethod]
     public void WhenConvertingToUShortAndStringIsPositiveUShort_ReturnAsUShort()
     {
         //Arrange
-        var parsed = Fixture.Create<ushort>();
+        var parsed = Dummy.Create<ushort>();
         var value = parsed.ToString();
 
         //Act
@@ -818,7 +818,7 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<ushort>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
     }
 
     [TestMethod]
@@ -831,33 +831,33 @@ public class ParseOrThrow : Tester
         Action action = () => value.ParseOrThrow<ushort>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
     }
 
     [TestMethod]
     public void WhenConvertingToUShortAndStringIsNotNumeric_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<ushort>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
     }
 
     [TestMethod]
     public void WhenConvertingToUShortAndStringHasFloatingPoint_Throw()
     {
         //Arrange
-        var value = $"{Fixture.Create<ushort>()}.{Fixture.Create<ushort>()}";
+        var value = $"{Dummy.Create<ushort>()}.{Dummy.Create<ushort>()}";
 
         //Act
         Action action = () => value.ParseOrThrow<ushort>();
 
         //Assert
-        action.Should().Throw<StringParsingException<ushort>>().WithMessage($"Can't parse string to {nameof(UInt16)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<ushort>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(UInt16)));
     }
 
     [TestMethod]
@@ -916,20 +916,20 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotTrueOrFalse_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<bool>();
 
         //Assert
-        action.Should().Throw<StringParsingException<bool>>().WithMessage($"Can't parse string to {nameof(Boolean)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<bool>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Boolean)));
     }
 
     [TestMethod]
     public void WhenValueIsValidDateTime_ReturnAsDateTime()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -957,34 +957,34 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotDateTime_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<DateTime>();
 
         //Assert
-        action.Should().Throw<StringParsingException<DateTime>>().WithMessage($"Can't parse string to {nameof(DateTime)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<DateTime>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(DateTime)));
     }
 
     [TestMethod]
     public void WhenValueIsNotUsingSameCultureInfo_Throw()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
         Action action = () => value.ParseOrThrow<DateTime>(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
         //Assert
-        action.Should().Throw<StringParsingException<DateTime>>().WithMessage($"Can't parse string to {nameof(DateTime)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<DateTime>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(DateTime)));
     }
 
     [TestMethod]
     public void WhenValueIsUsingSameCultureInfo_ReturnAsDateTime()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
@@ -998,7 +998,7 @@ public class ParseOrThrow : Tester
     public void WhenValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -1012,34 +1012,34 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotDateTimeOffset_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<DateTimeOffset>();
 
         //Assert
-        action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage($"Can't parse string to {nameof(DateTimeOffset)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(DateTimeOffset)));
     }
 
     [TestMethod]
     public void WhenConvertingDateTimeOffsetAndValueIsNotUsingSameCultureInfo_Throw()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
         Action action = () => value.ParseOrThrow<DateTimeOffset>(new ParsingOptions { FormatProvider = CultureInfo.CreateSpecificCulture("en-us") });
 
         //Assert
-        action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage($"Can't parse string to {nameof(DateTimeOffset)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<DateTimeOffset>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(DateTimeOffset)));
     }
 
     [TestMethod]
     public void WhenValueIsUsingSameCultureInfo_ReturnAsDateTimeOffset()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
@@ -1053,7 +1053,7 @@ public class ParseOrThrow : Tester
     public void WhenIsCorrectlyFormattedVersion_ReturnAsVersion()
     {
         //Arrange
-        var parsed = Fixture.Create<Version>();
+        var parsed = Dummy.Create<Version>();
         var value = parsed.ToString();
 
         //Act
@@ -1067,20 +1067,20 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotVersion_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<Version>();
 
         //Assert
-        action.Should().Throw<StringParsingException<Version>>().WithMessage($"Can't parse string to {nameof(Version)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<Version>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Version)));
     }
 
     [TestMethod]
     public void WhenValueIsValidTimeSpan_ReturnAsTimeSpan()
     {
         //Arrange
-        var parsed = Fixture.Create<TimeSpan>();
+        var parsed = Dummy.Create<TimeSpan>();
         var value = parsed.ToString();
 
         //Act
@@ -1094,20 +1094,20 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotTimeSpan_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<TimeSpan>();
 
         //Assert
-        action.Should().Throw<StringParsingException<TimeSpan>>().WithMessage($"Can't parse string to {nameof(TimeSpan)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<TimeSpan>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(TimeSpan)));
     }
 
     [TestMethod]
     public void WhenValueIsGuid_ReturnAsGuid()
     {
         //Arrange
-        var parsed = Fixture.Create<Guid>();
+        var parsed = Dummy.Create<Guid>();
         var value = parsed.ToString();
 
         //Act
@@ -1127,14 +1127,14 @@ public class ParseOrThrow : Tester
         var action = () => value.ParseOrThrow<Guid>();
 
         //Assert
-        action.Should().Throw<StringParsingException<Guid>>().WithMessage($"Can't parse string to {nameof(Guid)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<Guid>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Guid)));
     }
 
     [TestMethod]
     public void WhenValueIsNumeric_ReturnAsBigInteger()
     {
         //Arrange
-        var parsed = Fixture.Create<BigInteger>();
+        var parsed = Dummy.Create<BigInteger>();
         var value = parsed.ToString();
 
         //Act
@@ -1148,25 +1148,25 @@ public class ParseOrThrow : Tester
     public void WhenValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<BigInteger>();
 
         //Assert
-        action.Should().Throw<StringParsingException<BigInteger>>().WithMessage($"Can't parse string to {nameof(BigInteger)} : Its value was {value}");
+        action.Should().Throw<StringParsingException<BigInteger>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(BigInteger)));
     }
 
     [TestMethod]
     public void WhenIsUnsupportedType_Throw()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         Action action = () => value.ParseOrThrow<DummyUnsupportedType>();
 
         //Assert
-        action.Should().Throw<NotSupportedException>().WithMessage($"Can't parse string to {nameof(DummyUnsupportedType)} : {nameof(DummyUnsupportedType)} is not supported.");
+        action.Should().Throw<NotSupportedException>().WithMessage(string.Format(ExceptionMessages.ParsingToTypeIsNotSupported, nameof(DummyUnsupportedType)));
     }
 }

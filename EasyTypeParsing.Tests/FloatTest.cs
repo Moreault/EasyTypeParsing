@@ -25,7 +25,7 @@ public class FloatTest
         public void WhenStringIsNegativeFloat_ReturnAsFloat()
         {
             //Arrange
-            var parsed = -Fixture.Create<float>();
+            var parsed = -Dummy.Create<float>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -39,7 +39,7 @@ public class FloatTest
         public void WhenStringIsPositiveFloat_ReturnAsFloat()
         {
             //Arrange
-            var parsed = Fixture.Create<float>();
+            var parsed = Dummy.Create<float>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -79,7 +79,7 @@ public class FloatTest
         public void WhenStringIsNotNumeric_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToFloat();
@@ -92,7 +92,7 @@ public class FloatTest
         public void WhenStringHasFloatingPoint_ReturnAsFloat()
         {
             //Arrange
-            var parsed = Fixture.Create<float>() + Fixture.Create<float>() / 100;
+            var parsed = Dummy.Create<float>() + Dummy.Create<float>() / 100;
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -113,7 +113,7 @@ public class FloatTest
         public void WhenValueIsEmpty_ReturnDefaultValue(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<float>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -126,9 +126,9 @@ public class FloatTest
         public void WhenStringIsNegativeFloat_ReturnAsFloat()
         {
             //Arrange
-            var parsed = -Fixture.Create<float>();
+            var parsed = -Dummy.Create<float>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<float>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -141,9 +141,9 @@ public class FloatTest
         public void WhenStringIsPositiveFloat_ReturnAsFloat()
         {
             //Arrange
-            var parsed = Fixture.Create<float>();
+            var parsed = Dummy.Create<float>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<float>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -157,7 +157,7 @@ public class FloatTest
         {
             //Arrange
             var value = "92233736799999999999999999999999999999999999999999999999999999999976457645674575474576547645764576657620312342141341341243124312436854775809.982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-            var defaultValue = Fixture.Create<float>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -171,7 +171,7 @@ public class FloatTest
         {
             //Arrange
             var value = "-92233736799999999999999999999999999999999999999999999999999999999976457645674575474576547645764576657620312342141341341243124312436854775809.982222222457454671243123412341243214312342134124312431245674575476745764574572222221111111133232323";
-            var defaultValue = Fixture.Create<float>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -184,8 +184,8 @@ public class FloatTest
         public void WhenStringIsNotNumeric_ReturnDefaultValue()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<float>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -198,9 +198,9 @@ public class FloatTest
         public void WhenStringHasFloatingPoint_ReturnParsed()
         {
             //Arrange
-            var parsed = Fixture.Create<float>() + Fixture.Create<float>() / 100;
+            var parsed = Dummy.Create<float>() + Dummy.Create<float>() / 100;
             var value = parsed.ToString(CultureInfo.InvariantCulture);
-            var defaultValue = Fixture.Create<float>();
+            var defaultValue = Dummy.Create<float>();
 
             //Act
             var result = value.ToFloatOrDefault(defaultValue);
@@ -232,7 +232,7 @@ public class FloatTest
         public void WhenConvertingToFloatAndStringIsNegativeFloat_ReturnAsFloat()
         {
             //Arrange
-            var parsed = -Fixture.Create<float>();
+            var parsed = -Dummy.Create<float>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -246,7 +246,7 @@ public class FloatTest
         public void WhenConvertingToFloatAndStringIsPositiveFloat_ReturnAsFloat()
         {
             //Arrange
-            var parsed = Fixture.Create<float>();
+            var parsed = Dummy.Create<float>();
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act
@@ -286,20 +286,20 @@ public class FloatTest
         public void WhenConvertingToFloatAndStringIsNotNumeric_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToFloatOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<float>>().WithMessage($"Can't parse string to {nameof(Single)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<float>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(Single)));
         }
 
         [TestMethod]
         public void WhenConvertingToFloatAndStringHasFloatingPoint_ReturnParsed()
         {
             //Arrange
-            var parsed = Fixture.Create<float>() + Fixture.Create<float>() / 100;
+            var parsed = Dummy.Create<float>() + Dummy.Create<float>() / 100;
             var value = parsed.ToString(CultureInfo.InvariantCulture);
 
             //Act

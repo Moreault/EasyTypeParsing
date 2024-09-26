@@ -25,7 +25,7 @@ public class TimeSpanTest
         public void WhenValueIsValidTimeSpan_ReturnAsTimeSpan()
         {
             //Arrange
-            var parsed = Fixture.Create<TimeSpan>();
+            var parsed = Dummy.Create<TimeSpan>();
             var value = parsed.ToString();
 
             //Act
@@ -39,7 +39,7 @@ public class TimeSpanTest
         public void WhenValueIsNotTimeSpan_ReturnFailure()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             var result = value.ToTimeSpan();
@@ -59,7 +59,7 @@ public class TimeSpanTest
         public void WhenValueIsEmpty_ReturnDefault(string value)
         {
             //Arrange
-            var defaultValue = Fixture.Create<TimeSpan>();
+            var defaultValue = Dummy.Create<TimeSpan>();
 
             //Act
             var result = value.ToTimeSpanOrDefault(defaultValue);
@@ -72,9 +72,9 @@ public class TimeSpanTest
         public void WhenValueIsValidTimeSpan_ReturnAsTimeSpan()
         {
             //Arrange
-            var parsed = Fixture.Create<TimeSpan>();
+            var parsed = Dummy.Create<TimeSpan>();
             var value = parsed.ToString();
-            var defaultValue = Fixture.Create<TimeSpan>();
+            var defaultValue = Dummy.Create<TimeSpan>();
 
             //Act
             var result = value.ToTimeSpanOrDefault(defaultValue);
@@ -87,8 +87,8 @@ public class TimeSpanTest
         public void WhenValueIsNotTimeSpan_ReturnDefault()
         {
             //Arrange
-            var value = Fixture.Create<string>();
-            var defaultValue = Fixture.Create<TimeSpan>();
+            var value = Dummy.Create<string>();
+            var defaultValue = Dummy.Create<TimeSpan>();
 
             //Act
             var result = value.ToTimeSpanOrDefault(defaultValue);
@@ -120,7 +120,7 @@ public class TimeSpanTest
         public void WhenValueIsValidTimeSpan_ReturnAsTimeSpan()
         {
             //Arrange
-            var parsed = Fixture.Create<TimeSpan>();
+            var parsed = Dummy.Create<TimeSpan>();
             var value = parsed.ToString();
 
             //Act
@@ -134,13 +134,13 @@ public class TimeSpanTest
         public void WhenValueIsNotTimeSpan_Throw()
         {
             //Arrange
-            var value = Fixture.Create<string>();
+            var value = Dummy.Create<string>();
 
             //Act
             Action action = () => value.ToTimeSpanOrThrow();
 
             //Assert
-            action.Should().Throw<StringParsingException<TimeSpan>>().WithMessage($"Can't parse string to {nameof(TimeSpan)} : Its value was {value}");
+            action.Should().Throw<StringParsingException<TimeSpan>>().WithMessage(string.Format(ExceptionMessages.ParsingException, value, nameof(TimeSpan)));
         }
     }
 }

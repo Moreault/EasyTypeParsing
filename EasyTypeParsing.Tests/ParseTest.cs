@@ -7,7 +7,7 @@ public class ParseTest : Tester
     public void WhenConvertingToIntAndValueIsNegativeInt_ReturnAsInt()
     {
         //Arrange
-        var parsed = -Fixture.Create<int>();
+        var parsed = -Dummy.Create<int>();
         var value = parsed.ToString();
 
         //Act
@@ -21,7 +21,7 @@ public class ParseTest : Tester
     public void WhenConvertingToIntAndValueIsPositiveInt_ReturnAsInt()
     {
         //Arrange
-        var parsed = Fixture.Create<int>();
+        var parsed = Dummy.Create<int>();
         var value = parsed.ToString();
 
         //Act
@@ -61,7 +61,7 @@ public class ParseTest : Tester
     public void WhenConvertingToIntAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<int>();
@@ -74,7 +74,7 @@ public class ParseTest : Tester
     public void WhenConvertingToIntAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<int>()}.{Fixture.Create<int>()}";
+        var value = $"{Dummy.Create<int>()}.{Dummy.Create<int>()}";
 
         //Act
         var result = value.Parse<int>();
@@ -87,7 +87,7 @@ public class ParseTest : Tester
     public void WhenConvertingToLongAndValueIsNegativeLong_ReturnAsLong()
     {
         //Arrange
-        var parsed = -Fixture.Create<long>();
+        var parsed = -Dummy.Create<long>();
         var value = parsed.ToString();
 
         //Act
@@ -101,7 +101,7 @@ public class ParseTest : Tester
     public void WhenConvertingToLongAndValueIsPositiveLong_ReturnAsLong()
     {
         //Arrange
-        var parsed = Fixture.Create<long>();
+        var parsed = Dummy.Create<long>();
         var value = parsed.ToString();
 
         //Act
@@ -141,7 +141,7 @@ public class ParseTest : Tester
     public void WhenConvertingToLongAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<long>();
@@ -154,7 +154,7 @@ public class ParseTest : Tester
     public void WhenConvertingToLongAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<long>()}.{Fixture.Create<long>()}";
+        var value = $"{Dummy.Create<long>()}.{Dummy.Create<long>()}";
 
         //Act
         var result = value.Parse<long>();
@@ -167,7 +167,7 @@ public class ParseTest : Tester
     public void WhenConvertingToFloatAndValueIsNegativeFloat_ReturnAsFloat()
     {
         //Arrange
-        var parsed = -Fixture.Create<float>();
+        var parsed = -Dummy.Create<float>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -181,7 +181,7 @@ public class ParseTest : Tester
     public void WhenConvertingToFloatAndValueIsPositiveFloat_ReturnAsFloat()
     {
         //Arrange
-        var parsed = Fixture.Create<float>();
+        var parsed = Dummy.Create<float>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -208,7 +208,7 @@ public class ParseTest : Tester
     public void WhenConvertingToFloatAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<float>();
@@ -221,7 +221,7 @@ public class ParseTest : Tester
     public void WhenConvertingToFloatAndValueHasFloatingPoint_ReturnAsFloat()
     {
         //Arrange
-        var parsed = Fixture.Create<float>() + Fixture.Create<float>() / 100;
+        var parsed = Dummy.Create<float>() + Dummy.Create<float>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -235,7 +235,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDoubleAndValueIsNegativeDouble_ReturnAsDouble()
     {
         //Arrange
-        var parsed = -Fixture.Create<double>();
+        var parsed = -Dummy.Create<double>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -249,7 +249,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDoubleAndValueIsPositiveDouble_ReturnAsDouble()
     {
         //Arrange
-        var parsed = Fixture.Create<double>();
+        var parsed = Dummy.Create<double>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -276,7 +276,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDoubleAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<double>();
@@ -289,7 +289,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDoubleAndValueHasFloatingPoint_ReturnAsDouble()
     {
         //Arrange
-        var parsed = Fixture.Create<double>() + Fixture.Create<double>() / 100;
+        var parsed = Dummy.Create<double>() + Dummy.Create<double>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -303,7 +303,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDecimalAndValueIsNegativeDecimal_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = -Fixture.Create<decimal>();
+        var parsed = -Dummy.Create<decimal>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -317,7 +317,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDecimalAndValueIsPositiveDecimal_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = Fixture.Create<decimal>();
+        var parsed = Dummy.Create<decimal>();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -344,7 +344,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDecimalAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<decimal>();
@@ -357,7 +357,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDecimalAndValueHasFloatingPoint_ReturnAsDecimal()
     {
         //Arrange
-        var parsed = Fixture.Create<decimal>() + Fixture.Create<decimal>() / 100;
+        var parsed = Dummy.Create<decimal>() + Dummy.Create<decimal>() / 100;
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -371,7 +371,7 @@ public class ParseTest : Tester
     public void WhenConvertingToByteAndValueIsPositiveByte_ReturnAsByte()
     {
         //Arrange
-        var parsed = Fixture.Create<byte>();
+        var parsed = Dummy.Create<byte>();
         var value = parsed.ToString();
 
         //Act
@@ -411,7 +411,7 @@ public class ParseTest : Tester
     public void WhenConvertingToByteAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<byte>();
@@ -424,7 +424,7 @@ public class ParseTest : Tester
     public void WhenConvertingToByteAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<byte>()}.{Fixture.Create<byte>()}";
+        var value = $"{Dummy.Create<byte>()}.{Dummy.Create<byte>()}";
 
         //Act
         var result = value.Parse<byte>();
@@ -437,7 +437,7 @@ public class ParseTest : Tester
     public void WhenConvertingToSByteAndValueIsNegativeSByte_ReturnAsSByte()
     {
         //Arrange
-        var parsed = (sbyte)-Fixture.Create<sbyte>();
+        var parsed = (sbyte)-Dummy.Create<sbyte>();
         var value = parsed.ToString();
 
         //Act
@@ -451,7 +451,7 @@ public class ParseTest : Tester
     public void WhenConvertingToSByteAndValueIsPositiveSByte_ReturnAsSByte()
     {
         //Arrange
-        var parsed = Fixture.Create<sbyte>();
+        var parsed = Dummy.Create<sbyte>();
         var value = parsed.ToString();
 
         //Act
@@ -491,7 +491,7 @@ public class ParseTest : Tester
     public void WhenConvertingToSByteAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<sbyte>();
@@ -504,7 +504,7 @@ public class ParseTest : Tester
     public void WhenConvertingToSByteAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<sbyte>()}.{Fixture.Create<sbyte>()}";
+        var value = $"{Dummy.Create<sbyte>()}.{Dummy.Create<sbyte>()}";
 
         //Act
         var result = value.Parse<sbyte>();
@@ -517,7 +517,7 @@ public class ParseTest : Tester
     public void WhenConvertingToShortAndValueIsNegativeShort_ReturnAsShort()
     {
         //Arrange
-        var parsed = (short)-Fixture.Create<short>();
+        var parsed = (short)-Dummy.Create<short>();
         var value = parsed.ToString();
 
         //Act
@@ -531,7 +531,7 @@ public class ParseTest : Tester
     public void WhenConvertingToShortAndValueIsPositiveShort_ReturnAsShort()
     {
         //Arrange
-        var parsed = Fixture.Create<short>();
+        var parsed = Dummy.Create<short>();
         var value = parsed.ToString();
 
         //Act
@@ -571,7 +571,7 @@ public class ParseTest : Tester
     public void WhenConvertingToShortAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<short>();
@@ -584,7 +584,7 @@ public class ParseTest : Tester
     public void WhenConvertingToShortAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<short>()}.{Fixture.Create<short>()}";
+        var value = $"{Dummy.Create<short>()}.{Dummy.Create<short>()}";
 
         //Act
         var result = value.Parse<short>();
@@ -610,7 +610,7 @@ public class ParseTest : Tester
     public void WhenConvertingToCharAndValueIsNotChar_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<char>();
@@ -623,7 +623,7 @@ public class ParseTest : Tester
     public void WhenConvertingToCharAndValueIsSingleChar_ReturnAsChar()
     {
         //Arrange
-        var parsed = Fixture.Create<char>();
+        var parsed = Dummy.Create<char>();
         var value = parsed.ToString();
 
         //Act
@@ -637,7 +637,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUIntAndValueIsUInt_ReturnAsUInt()
     {
         //Arrange
-        var parsed = Fixture.Create<uint>();
+        var parsed = Dummy.Create<uint>();
         var value = parsed.ToString();
 
         //Act
@@ -677,7 +677,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUIntAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<uint>();
@@ -690,7 +690,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUIntAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<uint>()}.{Fixture.Create<uint>()}";
+        var value = $"{Dummy.Create<uint>()}.{Dummy.Create<uint>()}";
 
         //Act
         var result = value.Parse<uint>();
@@ -703,7 +703,7 @@ public class ParseTest : Tester
     public void WhenConvertingToULongAndValueIsULong_ReturnAsULong()
     {
         //Arrange
-        var parsed = Fixture.Create<ulong>();
+        var parsed = Dummy.Create<ulong>();
         var value = parsed.ToString();
 
         //Act
@@ -743,7 +743,7 @@ public class ParseTest : Tester
     public void WhenConvertingToULongAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<ulong>();
@@ -756,7 +756,7 @@ public class ParseTest : Tester
     public void WhenConvertingToULongAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<ulong>()}.{Fixture.Create<ulong>()}";
+        var value = $"{Dummy.Create<ulong>()}.{Dummy.Create<ulong>()}";
 
         //Act
         var result = value.Parse<ulong>();
@@ -769,7 +769,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUShortAndValueIsUShort_ReturnAsUShort()
     {
         //Arrange
-        var parsed = Fixture.Create<ushort>();
+        var parsed = Dummy.Create<ushort>();
         var value = parsed.ToString();
 
         //Act
@@ -809,7 +809,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUShortAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<ushort>();
@@ -822,7 +822,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUShortAndValueHasFloatingPoint_ReturnFailure()
     {
         //Arrange
-        var value = $"{Fixture.Create<ushort>()}.{Fixture.Create<ushort>()}";
+        var value = $"{Dummy.Create<ushort>()}.{Dummy.Create<ushort>()}";
 
         //Act
         var result = value.Parse<ushort>();
@@ -887,7 +887,7 @@ public class ParseTest : Tester
     public void WhenConvertingToBoolAndValueIsNotTrueOrFalse_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<bool>();
@@ -900,7 +900,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeAndValueIsValidDateTime_ReturnAsDateTime()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -928,7 +928,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeAndValueIsNotDateTime_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<DateTime>();
@@ -941,7 +941,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeAndValueIsNotUsingSameCultureInfo_ReturnFailure()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
@@ -955,7 +955,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeAndValueIsUsingSameCultureInfo_ReturnAsDateTime()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTime>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTime>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
@@ -969,7 +969,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsValidDateTimeOffset_ReturnAsDateTimeOffset()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.InvariantCulture);
 
         //Act
@@ -983,7 +983,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsNotDateTimeOffset_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<DateTimeOffset>();
@@ -996,7 +996,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsNotUsingSameCultureInfo_ReturnFailure()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
@@ -1010,7 +1010,7 @@ public class ParseTest : Tester
     public void WhenConvertingToDateTimeOffsetAndValueIsUsingSameCultureInfo_ReturnAsDateTimeOffset()
     {
         //Arrange
-        var parsed = Fixture.Create<DateTimeOffset>().TrimMilliseconds();
+        var parsed = Dummy.Create<DateTimeOffset>().TrimMilliseconds();
         var value = parsed.ToString(CultureInfo.CreateSpecificCulture("fr-ca"));
 
         //Act
@@ -1024,7 +1024,7 @@ public class ParseTest : Tester
     public void WhenConvertingToVersionAndValueIsCorrectlyFormattedVersion_ReturnAsVersion()
     {
         //Arrange
-        var parsed = Fixture.Create<Version>();
+        var parsed = Dummy.Create<Version>();
         var value = parsed.ToString();
 
         //Act
@@ -1038,7 +1038,7 @@ public class ParseTest : Tester
     public void WhenConvertingToVersionAndValueIsNotVersion_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<Version>();
@@ -1051,7 +1051,7 @@ public class ParseTest : Tester
     public void WhenConvertingToTimeSpanAndValueIsValidTimeSpan_ReturnAsTimeSpan()
     {
         //Arrange
-        var parsed = Fixture.Create<TimeSpan>();
+        var parsed = Dummy.Create<TimeSpan>();
         var value = parsed.ToString();
 
         //Act
@@ -1065,7 +1065,7 @@ public class ParseTest : Tester
     public void WhenConvertingToTimeSpanAndValueIsNotTimeSpan_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<TimeSpan>();
@@ -1078,7 +1078,7 @@ public class ParseTest : Tester
     public void WhenConvertingToGuidAndValueIsGuid_ReturnAsGuid()
     {
         //Arrange
-        var parsed = Fixture.Create<Guid>();
+        var parsed = Dummy.Create<Guid>();
         var value = parsed.ToString();
 
         //Act
@@ -1105,7 +1105,7 @@ public class ParseTest : Tester
     public void WhenConvertingToBigIntegerAndValueIsNumeric_ReturnAsBigInteger()
     {
         //Arrange
-        var parsed = Fixture.Create<BigInteger>();
+        var parsed = Dummy.Create<BigInteger>();
         var value = parsed.ToString();
 
         //Act
@@ -1119,7 +1119,7 @@ public class ParseTest : Tester
     public void WhenConvertingToBigIntegerAndValueIsNotNumeric_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<BigInteger>();
@@ -1132,7 +1132,7 @@ public class ParseTest : Tester
     public void WhenConvertingToUnsupportedType_ReturnFailure()
     {
         //Arrange
-        var value = Fixture.Create<string>();
+        var value = Dummy.Create<string>();
 
         //Act
         var result = value.Parse<DummyUnsupportedType>();
