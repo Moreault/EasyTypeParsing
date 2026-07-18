@@ -19,7 +19,7 @@
 		</PackageReference>
 		<PackageReference Include="WhiteJackalStudio.TestTools" Version="2.0.0-beta.2" />
 
-		<PackageReference Include="ToolBX.OutWarden" Version="4.0.0-beta.1" />
+		<PackageReference Include="ToolBX.OutWarden" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
